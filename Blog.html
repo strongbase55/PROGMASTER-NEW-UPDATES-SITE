@@ -1,0 +1,5195 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>NICEHE — Tech Blog</title>
+    <meta name="description" content="NICEHE — IT jobs, roadmaps, tech news and practical issue solutions." />
+    <style>
+        /* ===========================
+   GLOBAL RESET & VARIABLES
+   =========================== */
+        :root {
+            --primary-color: #3182ce;
+            /* The Blue we used */
+            --text-dark: #1a202c;
+            --text-light: #718096;
+            --bg-light: #f8f9fc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /* Crucial for grids */
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: #ffffff;
+            overflow-x: hidden;
+            /* Stops side-scrolling on mobile */
+        }
+
+        /* Smooth Scrolling for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --bg: #f6f8ff;
+            --card: #ffffff;
+            --primary: #4f46e5;
+            --primary-2: #7c83ff;
+            --muted: #6b7280;
+            --glass: rgba(79, 70, 229, 0.06);
+            --radius: 14px;
+            --maxwidth: 1200px;
+            --shadow: 0 10px 40px rgba(2, 6, 23, 0.06);
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            height: 100%
+        }
+
+        body {
+            margin: 0;
+            font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            background: var(--bg);
+            color: #0f172a;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.5;
+        }
+
+        a {
+            color: inherit
+        }
+
+        /* container */
+        .container {
+            max-width: var(--maxwidth);
+            margin: 0 auto;
+            padding: 20px
+        }
+
+        /* header/nav */
+        header.site-nav {
+            position: sticky;
+            top: 0;
+            z-index: 60;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(6px);
+            border-bottom: 1px solid rgba(2, 6, 23, 0.04);
+        }
+
+        .nav-inner {
+            max-width: var(--maxwidth);
+            margin: 0 auto;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px
+        }
+
+        .brand {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            text-decoration: none;
+            color: var(--primary)
+        }
+
+        .logo {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 14px;
+            align-items: center
+        }
+
+        .nav-links a {
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            color: inherit
+        }
+
+        .nav-links a:hover {
+            background: var(--glass)
+        }
+
+        .cta {
+            background: var(--primary);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(79, 70, 229, 0.12)
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: 0;
+            padding: 8px;
+            cursor: pointer
+        }
+
+        @media (max-width:820px) {
+            .nav-links {
+                display: none
+            }
+
+            .hamburger {
+                display: block
+            }
+        }
+
+        /* hero */
+        .hero {
+            margin: 18px auto 34px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-2));
+            color: white;
+            border-radius: 18px;
+            padding: 44px 28px;
+            box-shadow: var(--shadow)
+        }
+
+        .hero-inner {
+            max-width: 980px;
+            margin: 0 auto;
+            text-align: center
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            margin: 0 0 10px;
+            letter-spacing: -0.02em
+        }
+
+        .hero p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.94);
+            font-size: 15px
+        }
+
+        /* controls */
+        .controls {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 18px 0
+        }
+
+        .search {
+            flex: 1;
+            min-width: 220px;
+            display: flex;
+            align-items: center;
+            background: var(--card);
+            border-radius: 12px;
+            padding: 8px 12px;
+            box-shadow: 0 6px 18px rgba(2, 6, 23, 0.04);
+            border: 1px solid rgba(2, 6, 23, 0.03)
+        }
+
+        .search input {
+            border: 0;
+            outline: 0;
+            padding: 10px 8px;
+            font-size: 15px;
+            background: transparent;
+            width: 100%
+        }
+
+        .filters {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap
+        }
+
+        .chip {
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: transparent;
+            border: 1px solid rgba(2, 6, 23, 0.06);
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer
+        }
+
+        .chip.active {
+            background: linear-gradient(90deg, var(--primary), var(--primary-2));
+            color: white;
+            border: none;
+            box-shadow: 0 8px 22px rgba(79, 70, 229, 0.12)
+        }
+
+        .muted {
+            color: var(--muted)
+        }
+
+        /* layout grid */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 20px;
+            align-items: start
+        }
+
+        @media (max-width:980px) {
+            .grid {
+                grid-template-columns: 1fr
+            }
+        }
+
+        /* posts */
+        .posts {
+            display: grid;
+            gap: 16px
+        }
+
+        .card {
+            background: var(--card);
+            padding: 18px;
+            border-radius: 14px;
+            border: 1px solid rgba(2, 6, 23, 0.03);
+            box-shadow: var(--shadow);
+            transition: transform .18s ease, box-shadow .18s ease
+        }
+
+        .card:hover {
+            transform: translateY(-6px)
+        }
+
+        .meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px
+        }
+
+        .tag {
+            font-size: 12px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: rgba(79, 70, 229, 0.06);
+            color: var(--primary);
+            font-weight: 800
+        }
+
+        .card h3 {
+            margin: 10px 0 8px;
+            font-size: 18px
+        }
+
+        .excerpt {
+            color: var(--muted);
+            font-size: 14px;
+            margin: 8px 0 12px
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .small-btn {
+            padding: 8px 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(2, 6, 23, 0.06);
+            background: transparent;
+            cursor: pointer;
+            font-weight: 700
+        }
+
+        .read-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 9px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700
+        }
+
+        /* sidebar */
+        aside.sidebar {
+            position: relative;
+            top: 0
+        }
+
+        .card.side {
+            padding: 16px
+        }
+
+        .recent-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px
+        }
+
+        .recent-item {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            cursor: pointer
+        }
+
+        .recent-item .thumb {
+            width: 52px;
+            height: 52px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-2));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700
+        }
+
+        /* contact / about */
+        .about,
+        .contact {
+            margin-top: 18px
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 360px;
+            gap: 20px
+        }
+
+        @media(max-width:980px) {
+            .contact-grid {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .contact-card {
+            background: var(--card);
+            padding: 18px;
+            border-radius: 12px;
+            box-shadow: var(--shadow)
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(2, 6, 23, 0.06);
+            font-size: 14px
+        }
+
+        .submit {
+            background: var(--primary);
+            color: white;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer
+        }
+
+        footer.site-footer {
+            margin-top: 36px;
+            text-align: center;
+            padding: 28px 12px;
+            color: rgba(17, 24, 39, 0.9)
+        }
+
+        /* full-screen overlay for article */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(2, 6, 23, 0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            padding: 18px
+        }
+
+        .overlay.open {
+            display: flex
+        }
+
+        .article-frame {
+            width: 96vw;
+            height: 94vh;
+            background: var(--card);
+            border-radius: 12px;
+            display: flex;
+            gap: 18px;
+            padding: 22px;
+            box-shadow: 0 40px 120px rgba(2, 6, 23, 0.6);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* left: article content; right: ad/side content */
+        .article-main {
+            flex: 1;
+            overflow: auto;
+            padding-right: 8px
+        }
+
+        .article-side {
+            width: 340px;
+            background: linear-gradient(180deg, rgba(250, 250, 250, 0.98), rgba(245, 245, 250, 0.98));
+            border-radius: 10px;
+            padding: 12px;
+            overflow: auto
+        }
+
+        .article-main h2 {
+            margin-top: 0
+        }
+
+        .article-meta {
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 12px
+        }
+
+        .ad-slot {
+            margin-top: 14px;
+            padding: 12px;
+            border-radius: 10px;
+            background: linear-gradient(90deg, rgba(79, 70, 229, 0.04), rgba(124, 131, 255, 0.02));
+            color: var(--muted);
+            text-align: center;
+            border: 1px dashed rgba(2, 6, 23, 0.06)
+        }
+
+        .panel-actions {
+            position: absolute;
+            top: 14px;
+            right: 18px;
+            display: flex;
+            gap: 8px
+        }
+
+        .panel-actions button {
+            background: transparent;
+            border: 1px solid rgba(2, 6, 23, 0.07);
+            padding: 8px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700
+        }
+
+        .close-btn {
+            background: var(--primary);
+            color: rgb(0, 0, 0);
+            border: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700
+        }
+
+        .share-popup {
+            position: absolute;
+            right: 18px;
+            top: 62px;
+            background: var(--card);
+            border-radius: 10px;
+            padding: 10px;
+            border: 1px solid rgba(2, 6, 23, 0.06);
+            box-shadow: 0 12px 40px rgba(2, 6, 23, 0.08);
+            display: none;
+            z-index: 10010
+        }
+
+        .share-popup button {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 8px;
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+            font-weight: 700;
+            border-radius: 6px
+        }
+
+        .saved-list {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px
+        }
+
+        @media (max-width:980px) {
+            .article-frame {
+                flex-direction: column;
+                height: 92vh;
+                width: 96vw;
+                padding: 14px
+            }
+
+            .article-side {
+                width: 100%;
+                order: 2;
+                height: 180px
+            }
+
+            .article-main {
+                order: 1;
+                height: calc(100% - 200px)
+            }
+
+            .panel-actions {
+                top: 8px;
+                right: 8px
+            }
+
+            .share-popup {
+                right: 8px
+            }
+        }
+
+        /* small screens */
+        @media (max-width:640px) {
+            .hero h1 {
+                font-size: 22px
+            }
+
+            .hero {
+                padding: 22px
+            }
+
+            .container {
+                padding: 12px
+            }
+        }
+
+        /* accessibility focus */
+        button:focus,
+        a:focus,
+        input:focus,
+        textarea:focus {
+            outline: 3px solid rgba(79, 70, 229, 0.16);
+            outline-offset: 2px
+        }
+
+        /* ABOUT US SECTION */
+        /* --- General Reset & Fonts --- */
+        .about-section {
+            padding: 80px 20px;
+            background-color: #f8f9fa;
+            /* Light grey background for contrast */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #333;
+            box-sizing: border-box;
+        }
+
+        .about-section * {
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* --- Header Styling --- */
+        .about-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px auto;
+        }
+
+        .sub-title {
+            color: #007bff;
+            /* Accent Blue */
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .main-title {
+            font-size: 2.5rem;
+            margin: 0 0 20px 0;
+            color: #2c3e50;
+            /* Dark Slate */
+            line-height: 1.2;
+        }
+
+        .header-line {
+            width: 60px;
+            height: 4px;
+            background-color: #007bff;
+            margin: 0 auto 25px auto;
+            border-radius: 2px;
+        }
+
+        .about-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        /* --- Grid Layout for Cards --- */
+        .features-grid {
+            display: grid;
+            /* Auto-fit creates columns based on width. 
+       minmax(250px, 1fr) means cards are at least 250px wide, 
+       but stretch to fill space if available. */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        /* --- Card Styling --- */
+        .feature-card {
+            background: #ffffff;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        /* Hover Effect */
+        .feature-card:hover {
+            transform: translateY(-10px);
+            /* Moves card up */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid #007bff;
+        }
+
+        /* --- Icon Styling --- */
+        .icon-box {
+            font-size: 2.5rem;
+            color: #007bff;
+            margin-bottom: 20px;
+            background: #eef6ff;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            /* Centers icon vertically */
+            border-radius: 50%;
+            /* Makes it a circle */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-weight: 700;
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 768px) {
+            .about-section {
+                padding: 50px 20px;
+            }
+
+            .main-title {
+                font-size: 2rem;
+            }
+
+            .features-grid {
+                gap: 20px;
+            }
+        }
+
+        /* CONTACT SECTION */
+        /* ===========================
+   NEWSLETTER STYLES
+   =========================== */
+        .newsletter-section {
+            padding: 60px 20px;
+            background-color: #2c3e50;
+            /* Dark Slate background */
+            color: #fff;
+            margin-bottom: 0;
+        }
+
+        .newsletter-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .newsletter-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .newsletter-content h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .newsletter-content p {
+            color: #cbd5e0;
+            /* Light grey text */
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .newsletter-form {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 15px;
+            border-radius: 6px;
+            border: none;
+            outline: none;
+        }
+
+        .newsletter-form button {
+            padding: 15px 25px;
+            background-color: #007bff;
+            /* Matches your accent color */
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background-color: #0056b3;
+        }
+
+        /* ===========================
+   CONTACT SECTION STYLES
+   =========================== */
+        .contact-section {
+            padding: 80px 20px;
+            background-color: #ffffff;
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            /* Info is smaller, Form is wider */
+            gap: 50px;
+            align-items: start;
+        }
+
+        /* Left Side Info */
+        .contact-info h3 {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .info-item i {
+            color: #007bff;
+            width: 30px;
+            font-size: 1.2rem;
+        }
+
+        /* Right Side Form Card */
+        .contact-form-card {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: #2c3e50;
+            /* Dark button */
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #007bff;
+            /* Turns blue on hover */
+        }
+
+        /* ===========================
+   RESPONSIVE (Mobile)
+   =========================== */
+        @media (max-width: 768px) {
+            .newsletter-wrapper {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .newsletter-form {
+                width: 100%;
+                flex-direction: column;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                /* Stack vertically on mobile */
+                gap: 30px;
+            }
+
+            .contact-form-card {
+                padding: 25px;
+            }
+        }
+
+        /* footer  */
+        /* --- Modern Footer Container --- */
+        .modern-footer {
+            background-color: #f8f9fc;
+            /* Very light cool grey - High End look */
+            color: #4a5568;
+            /* Slate grey text */
+            padding-top: 0;
+            font-family: 'Inter', system-ui, sans-serif;
+            position: relative;
+        }
+
+        /* Top Gradient Line */
+        .footer-gradient-bar {
+            height: 5px;
+            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+            /* Cool Blue/Cyan Gradient */
+            width: 100%;
+        }
+
+        .modern-footer .container {
+            padding: 80px 20px 40px;
+        }
+
+        /* --- Grid Layout --- */
+        .footer-top {
+            display: grid;
+            /* 1.5fr for brand, 1fr for other columns */
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        /* --- Brand Column --- */
+        .brand-logo {
+            color: #1a202c;
+            /* Dark Navy */
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+
+        .highlight {
+            color: #3182ce;
+            /* Tech Blue */
+        }
+
+        .brand-desc {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #718096;
+            margin-bottom: 25px;
+            max-width: 300px;
+        }
+
+        /* Social Icons (Neumorphic style) */
+        .social-icons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-icons a {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            /* Soft square */
+            color: #4a5568;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+        }
+
+        .social-icons a:hover {
+            background-color: #3182ce;
+            color: white;
+            border-color: #3182ce;
+            transform: translateY(-2px);
+        }
+
+        /* --- Navigation Links --- */
+        .footer-nav h4 {
+            color: #1a202c;
+            /* Dark Heading */
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-nav li {
+            margin-bottom: 12px;
+        }
+
+        .footer-nav a {
+            text-decoration: none;
+            color: #718096;
+            font-size: 0.95rem;
+            transition: color 0.2s ease, padding-left 0.2s ease;
+            display: inline-block;
+        }
+
+        .footer-nav a:hover {
+            color: #3182ce;
+            /* Active Blue */
+            padding-left: 5px;
+            /* Slight slide effect */
+        }
+
+        /* --- Badges (Popular / New) --- */
+        .badge {
+            font-size: 0.65rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-left: 5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            background-color: #ebf8ff;
+            color: #3182ce;
+        }
+
+        .badge.new {
+            background-color: #e6fffa;
+            color: #38b2ac;
+            /* Teal */
+        }
+
+        /* --- Bottom Bar --- */
+        .footer-divider {
+            height: 1px;
+            background-color: #e2e8f0;
+            margin-bottom: 30px;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #a0aec0;
+        }
+
+        .legal-links a {
+            color: #a0aec0;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .legal-links a:hover {
+            color: #3182ce;
+        }
+
+        .separator {
+            margin: 0 8px;
+            color: #cbd5e0;
+        }
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 992px) {
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+                /* 2 columns on tablet */
+            }
+
+            .footer-brand {
+                grid-column: span 2;
+                /* Brand takes full width */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer-top {
+                grid-template-columns: 1fr;
+                /* 1 column on mobile */
+                text-align: center;
+            }
+
+            .footer-brand {
+                grid-column: span 1;
+                margin: 0 auto;
+            }
+
+            .brand-desc {
+                margin: 0 auto 25px auto;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+
+        /* header */
+
+        /* ===========================
+   HEADER / NAVBAR STYLES
+   =========================== */
+        .main-header {
+            background-color: #ffffff;
+            height: 80px;
+            width: 100%;
+            position: sticky;
+            /* Sticks to top of screen */
+            top: 0;
+            z-index: 1000;
+            /* Ensures it stays above everything else */
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            /* Subtle shadow */
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+
+        /* --- Logo --- */
+        .nav-logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #1a202c;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .highlight {
+            color: #3182ce;
+            /* Matches Footer Highlight */
+        }
+
+        /* --- Navigation Links --- */
+        .nav-menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            /* Space between links */
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #3182ce;
+        }
+
+        /* --- Buttons & Mobile Toggle --- */
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Gradient CTA Button */
+        .btn-gradient {
+            padding: 10px 24px;
+            background: linear-gradient(90deg, #3182ce 0%, #4facfe 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(49, 130, 206, 0.3);
+        }
+
+        /* Mobile Toggle (Hidden on Desktop) */
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: #1a202c;
+            cursor: pointer;
+        }
+
+        /* ===========================
+   RESPONSIVE (Mobile Nav)
+   =========================== */
+        @media (max-width: 768px) {
+
+            /* Show Hamburger Icon */
+            .mobile-toggle {
+                display: block;
+            }
+
+            /* Hide the list initially */
+            .nav-menu {
+                position: absolute;
+                top: 80px;
+                /* Directly below header */
+                left: 0;
+                width: 100%;
+                background-color: #ffffff;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+                padding: 20px 0;
+                flex-direction: column;
+
+                /* Animation properties */
+                opacity: 0;
+                transform: translateY(-20px);
+                pointer-events: none;
+                /* Can't click when hidden */
+                transition: all 0.3s ease;
+            }
+
+            /* This class is added via JS to show menu */
+            .nav-menu.active {
+                opacity: 1;
+                transform: translateY(0);
+                pointer-events: all;
+            }
+
+            .nav-list {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .btn-gradient {
+                /* On mobile, maybe hide the button or make it smaller */
+                display: none;
+            }
+        }
+
+        #home {
+            margin-top: 2em;
+
+        }
+
+        @media(max-width:768px) {
+            #home {
+                width: 96%;
+            }
+        }
+
+
+
+        /* NEW HERO SECTION */
+        /* ===========================
+   HERO SECTION STYLES
+   =========================== */
+        .hero-section {
+            padding: 80px 20px 100px;
+            /* Top/Side/Bottom padding */
+            background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
+            /* Subtle diagonal gradient */
+            overflow: hidden;
+            /* Prevents animations from scrolling */
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            /* Split 50/50 */
+            align-items: center;
+            gap: 60px;
+        }
+
+        /* --- Left Side Typography --- */
+        .hero-badge {
+            background-color: #e6fffa;
+            color: #38b2ac;
+            /* Teal */
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            color: #1a202c;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .highlight-text {
+            color: #3182ce;
+            /* Matches your theme blue */
+            background: -webkit-linear-gradient(45deg, #3182ce, #63b3ed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-desc {
+            font-size: 1.15rem;
+            color: #4a5568;
+            line-height: 1.8;
+            margin-bottom: 35px;
+            max-width: 90%;
+        }
+
+        /* --- Buttons --- */
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .btn-primary {
+            padding: 15px 30px;
+            background-color: #3182ce;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 14px rgba(49, 130, 206, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(49, 130, 206, 0.6);
+        }
+
+        .btn-secondary {
+            padding: 15px 30px;
+            background-color: white;
+            color: #3182ce;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            border: 1px solid #e2e8f0;
+            transition: background 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background-color: #f7fafc;
+            border-color: #cbd5e0;
+        }
+
+        /* Stats Row */
+        .hero-stats {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #718096;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .hero-stats span {
+            color: #2d3748;
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            background-color: #cbd5e0;
+            border-radius: 50%;
+        }
+
+        /* ===========================
+   RIGHT SIDE VISUAL (Code Window)
+   =========================== */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .code-window {
+            width: 100%;
+            max-width: 500px;
+            background-color: #1a202c;
+            /* Dark Theme Box */
+            border-radius: 12px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+
+            /* Animation: Floating up and down */
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .window-header {
+            background-color: #2d3748;
+            padding: 15px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .window-header .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot.red {
+            background-color: #fc8181;
+        }
+
+        .dot.yellow {
+            background-color: #f6e05e;
+        }
+
+        .dot.green {
+            background-color: #68d391;
+        }
+
+        .window-body {
+            padding: 25px;
+            font-family: 'Courier New', Courier, monospace;
+            color: #a0aec0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Syntax Highlighting Colors */
+        .keyword {
+            color: #f687b3;
+        }
+
+        /* Pink */
+        .var {
+            color: #63b3ed;
+        }
+
+        /* Blue */
+        .string {
+            color: #68d391;
+        }
+
+        /* Green */
+        .func {
+            color: #f6e05e;
+        }
+
+        /* Yellow */
+        .indent {
+            padding-left: 20px;
+        }
+
+        /* Floating "Hired" Badge */
+        .floating-badge {
+            position: absolute;
+            bottom: 30px;
+            right: -20px;
+            background-color: #ffffff;
+            color: #2f855a;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: float 6s ease-in-out infinite reverse;
+            /* Floats opposite direction */
+        }
+
+        /* Animation Keyframes */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* ===========================
+   RESPONSIVE (Mobile)
+   =========================== */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                /* Stack vertically */
+                text-align: center;
+                gap: 40px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .hero-desc {
+                margin: 0 auto 30px auto;
+            }
+
+            /* Hide visual on very small screens if it takes too much space */
+            .hero-visual {
+                padding: 0 20px;
+            }
+
+            .floating-badge {
+                right: 0;
+                /* Align badge better on mobile */
+            }
+        }
+
+        /* ROADMAPS */
+        /* ===========================
+   MODAL / POPUP STYLES
+   =========================== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            /* Dim background */
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            display: none;
+            /* Hidden by default */
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-container {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-container {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #718096;
+        }
+
+        /* Role Grid (The Options) */
+        .role-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .role-card {
+            border: 2px solid #f1f5f9;
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .role-card:hover {
+            border-color: #3182ce;
+            background-color: #ebf8ff;
+            transform: translateY(-3px);
+        }
+
+        .role-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .role-icon.blue {
+            color: #3182ce;
+        }
+
+        .role-icon.purple {
+            color: #805ad5;
+        }
+
+        .role-icon.green {
+            color: #38a169;
+        }
+
+        .role-icon.orange {
+            color: #dd6b20;
+        }
+
+        /* ===========================
+   TIMELINE / ROADMAP STYLES
+   =========================== */
+        .roadmap-section {
+            padding: 80px 20px;
+            background-color: #fff;
+        }
+
+        .roadmap-section.hidden {
+            display: none;
+        }
+
+        .roadmap-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 60px auto;
+        }
+
+        .roadmap-badge {
+            background-color: #3182ce;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* --- The Line Visuals --- */
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* The vertical line running down the middle */
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: #e2e8f0;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+            box-sizing: border-box;
+        }
+
+        /* Left items */
+        .timeline-item.left {
+            left: 0;
+            text-align: right;
+        }
+
+        /* Right items */
+        .timeline-item.right {
+            left: 50%;
+            text-align: left;
+        }
+
+        /* The Dots on the line */
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: white;
+            border: 4px solid #3182ce;
+            top: 25px;
+            border-radius: 50%;
+            z-index: 1;
+            transition: background 0.3s;
+        }
+
+        /* Fix dot position for Right items */
+        .timeline-item.right::after {
+            left: -10px;
+        }
+
+        /* Content Box (Card) */
+        .timeline-content {
+            padding: 25px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #f1f5f9;
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            border-color: #3182ce;
+        }
+
+        .step-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #f1f5f9;
+            /* Subtle number in background */
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            z-index: 0;
+        }
+
+        .timeline-item.left .step-number {
+            left: 20px;
+            right: auto;
+        }
+
+        .timeline-content h3 {
+            margin: 0 0 10px 0;
+            color: #2d3748;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-content p {
+            margin: 0 0 15px 0;
+            color: #718096;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Tags (Skill pills) */
+        .tags span {
+            display: inline-block;
+            background: #ebf8ff;
+            color: #3182ce;
+            font-size: 0.8rem;
+            padding: 4px 10px;
+            border-radius: 5px;
+            margin-right: 5px;
+            font-weight: 600;
+        }
+
+        /* Final Trophy Circle */
+        .timeline-end {
+            text-align: center;
+            position: relative;
+            padding-top: 50px;
+            z-index: 2;
+        }
+
+        .end-circle {
+            width: 60px;
+            height: 60px;
+            background: #38a169;
+            /* Success Green */
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            margin: 0 auto 10px auto;
+            border: 5px solid white;
+        }
+
+        /* ===========================
+   MOBILE RESPONSIVENESS
+   =========================== */
+        @media (max-width: 768px) {
+
+            /* Stack role grid */
+            .role-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Move line to the left */
+            .timeline::after {
+                left: 31px;
+            }
+
+            /* Make all items full width and on the right */
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item.left,
+            .timeline-item.right {
+                left: 0;
+                text-align: left;
+            }
+
+            /* Adjust dots */
+            .timeline-item.left::after,
+            .timeline-item.right::after {
+                left: 21px;
+            }
+
+            /* Move step number to right for all */
+            .timeline-item.left .step-number {
+                left: auto;
+                right: 20px;
+            }
+        }
+
+
+
+        /*CENEMATIC ANIAMTIONS  */
+        /* ===========================
+   CINEMATIC CONTAINER
+   =========================== */
+        .cinematic-wrapper {
+            background-color: #0b0d17;
+            /* Deep Space Black */
+            background-image:
+                radial-gradient(circle at 50% 50%, rgba(0, 243, 255, 0.05) 0%, transparent 50%),
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 50px 50px, 50px 50px;
+            /* Grid Pattern */
+            min-height: 100vh;
+            padding: 100px 20px;
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .cinematic-wrapper.hidden {
+            display: none;
+        }
+
+        .cinematic-header {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        .neon-text {
+            color: #fff;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.7), 0 0 20px rgba(0, 243, 255, 0.5);
+            font-size: 3rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .cinematic-header p {
+            color: #00f3ff;
+            font-family: monospace;
+            letter-spacing: 2px;
+        }
+
+        /* ===========================
+   THE LASER BEAM (TIMELINE)
+   =========================== */
+        .timeline-track {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding-bottom: 100px;
+        }
+
+        /* The faint background rail */
+        .center-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 0;
+        }
+
+        /* The Live Moving Beam */
+        .moving-beam {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            /* Slightly wider than rail */
+            background: #00f3ff;
+            box-shadow: 0 0 15px #00f3ff, 0 0 30px #00f3ff;
+            z-index: 1;
+            top: 0;
+            height: 0%;
+            /* JS will change this */
+            transition: height 0.1s linear;
+            /* Smooth linear movement */
+        }
+
+        /* The Glowing Tip */
+        .beam-head {
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 40px;
+            background: radial-gradient(circle, #fff 0%, #00f3ff 100%);
+            border-radius: 50%;
+            filter: blur(5px);
+            box-shadow: 0 0 20px #fff;
+        }
+
+        /* ===========================
+   CHECKPOINTS (ITEMS)
+   =========================== */
+        .checkpoint {
+            position: relative;
+            width: 50%;
+            padding: 0 60px;
+            margin-bottom: 150px;
+            /* Big spacing for cinematic scrolling */
+            opacity: 0.1;
+            /* Almost invisible initially */
+            filter: blur(5px);
+            transform: scale(0.9);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            /* Bouncy spring effect */
+        }
+
+        /* Active State (Triggered by JS) */
+        .checkpoint.revealed {
+            opacity: 1;
+            filter: blur(0);
+            transform: scale(1);
+        }
+
+        .checkpoint.left {
+            left: 0;
+            text-align: right;
+        }
+
+        .checkpoint.right {
+            left: 50%;
+            text-align: left;
+        }
+
+        .checkpoint.center {
+            width: 100%;
+            left: 0;
+            text-align: center;
+            opacity: 0;
+        }
+
+        /* The Marker Dot */
+        .checkpoint-marker {
+            position: absolute;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: #0b0d17;
+            border: 2px solid #555;
+            border-radius: 50%;
+            z-index: 2;
+            transition: all 0.3s;
+        }
+
+        .checkpoint.left .checkpoint-marker {
+            right: -12px;
+        }
+
+        .checkpoint.right .checkpoint-marker {
+            left: -12px;
+        }
+
+        /* When beam hits marker */
+        .checkpoint.revealed .checkpoint-marker {
+            background: #00f3ff;
+            border-color: #fff;
+            box-shadow: 0 0 20px #00f3ff;
+            transform: scale(1.5);
+        }
+
+        /* ===========================
+   HOLOGRAPHIC CARDS
+   =========================== */
+        .holo-card {
+            background: rgba(11, 13, 23, 0.7);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            padding: 30px;
+            border-radius: 12px;
+            position: relative;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+
+        /* Scanning Line Effect inside card */
+        .holo-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 40%, rgba(0, 243, 255, 0.1) 50%, transparent 60%);
+            transform: translateY(-100%);
+            animation: scan 3s infinite linear;
+            pointer-events: none;
+        }
+
+        @keyframes scan {
+            0% {
+                transform: translateY(-100%);
+            }
+
+            100% {
+                transform: translateY(200%);
+            }
+        }
+
+        .holo-card h3 {
+            color: #fff;
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .holo-card p {
+            color: #a0aec0;
+            line-height: 1.6;
+        }
+
+        .tech-stack span {
+            display: inline-block;
+            border: 1px solid #00f3ff;
+            color: #00f3ff;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-top: 15px;
+            margin-right: 5px;
+            box-shadow: 0 0 5px rgba(0, 243, 255, 0.2);
+        }
+
+        /* Final Trophy */
+        .final-trophy {
+            font-size: 4rem;
+            color: #00f3ff;
+            margin-bottom: 20px;
+            animation: float 3s infinite ease-in-out;
+        }
+
+        /* ===========================
+   MOBILE ADJUSTMENTS
+   =========================== */
+        @media (max-width: 768px) {
+
+            .center-line,
+            .moving-beam {
+                left: 20px;
+            }
+
+            .checkpoint {
+                width: 100%;
+                left: 0;
+                padding-left: 60px;
+                padding-right: 10px;
+                text-align: left;
+            }
+
+            .checkpoint.left .checkpoint-marker,
+            .checkpoint.right .checkpoint-marker {
+                left: 11px;
+                /* Align with rail */
+                right: auto;
+            }
+        }
+
+        /* ANOTHER CSS CODE FOR ANUMATIONS ROADMAP */
+        /* ===========================
+   FULL SCREEN MODAL STYLES
+   =========================== */
+        .roadmap-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f8fafc;
+            /* Very light cool gray */
+            z-index: 3000;
+            /* Highest priority */
+            display: none;
+            /* Hidden by default */
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .roadmap-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Close Button */
+        .close-roadmap-btn {
+            position: absolute;
+            top: 25px;
+            right: 30px;
+            background: white;
+            border: 1px solid #e2e8f0;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            color: #64748b;
+            cursor: pointer;
+            z-index: 3002;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .close-roadmap-btn:hover {
+            background: #ef4444;
+            /* Red on hover */
+            color: white;
+            border-color: #ef4444;
+        }
+
+        /* Scroll Container */
+        .roadmap-scroll-container {
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            /* Allows scrolling inside modal */
+            padding: 80px 20px 100px;
+            scroll-behavior: smooth;
+        }
+
+        .roadmap-content-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .roadmap-modal-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .roadmap-modal-header h2 {
+            font-size: 2.5rem;
+            color: #1e293b;
+            /* Dark Slate */
+            margin: 15px 0;
+        }
+
+        .badge-blue {
+            background-color: #ebf8ff;
+            color: #3182ce;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* ===========================
+   CLEAN TIMELINE STYLES
+   =========================== */
+        .clean-timeline {
+            position: relative;
+            padding-bottom: 100px;
+        }
+
+        /* 1. Gray Rail */
+        .rail-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background-color: #e2e8f0;
+            /* Light Gray */
+            border-radius: 4px;
+            z-index: 0;
+        }
+
+        /* 2. Blue Progress Beam */
+        .progress-beam {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            background: linear-gradient(to bottom, #3182ce, #63b3ed);
+            /* Blue Gradient */
+            top: 0;
+            height: 0%;
+            /* JS updates this */
+            z-index: 1;
+            border-radius: 4px;
+            box-shadow: 0 0 15px rgba(49, 130, 206, 0.4);
+            transition: height 0.1s linear;
+        }
+
+        /* ===========================
+   STEPS & CARDS
+   =========================== */
+        .clean-step {
+            position: relative;
+            width: 50%;
+            padding: 0 50px;
+            margin-bottom: 100px;
+            opacity: 0.3;
+            /* Faded initially */
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .clean-step.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .clean-step.left {
+            left: 0;
+            text-align: right;
+        }
+
+        .clean-step.right {
+            left: 50%;
+            text-align: left;
+        }
+
+        .clean-step.center {
+            width: 100%;
+            left: 0;
+            text-align: center;
+        }
+
+        /* The Dot on the line */
+        .step-dot {
+            position: absolute;
+            top: 25px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border: 4px solid #cbd5e0;
+            /* Gray border initially */
+            border-radius: 50%;
+            z-index: 2;
+            transition: all 0.3s;
+        }
+
+        .clean-step.left .step-dot {
+            right: -12px;
+        }
+
+        .clean-step.right .step-dot {
+            left: -12px;
+        }
+
+        /* Active Dot State */
+        .clean-step.revealed .step-dot {
+            border-color: #3182ce;
+            transform: scale(1.3);
+            box-shadow: 0 0 0 4px rgba(49, 130, 206, 0.2);
+        }
+
+        /* The Card Styling */
+        .step-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            /* Soft Shadow */
+            border: 1px solid #f1f5f9;
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .clean-step.revealed .step-card {
+            transform: translateY(-5px);
+            border-color: #bee3f8;
+        }
+
+        .step-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #f7fafc;
+            /* Very subtle background number */
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            z-index: 0;
+        }
+
+        .clean-step.left .step-number {
+            left: 20px;
+            right: auto;
+        }
+
+        .step-card h3 {
+            margin: 0 0 10px 0;
+            color: #2d3748;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-card p {
+            color: #718096;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-tags span {
+            display: inline-block;
+            background: #edf2f7;
+            color: #4a5568;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+            margin-right: 5px;
+        }
+
+        /* Success Icon */
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: #48bb78;
+            /* Green */
+            color: white;
+            font-size: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            margin: 0 auto 20px auto;
+            box-shadow: 0 10px 20px rgba(72, 187, 120, 0.3);
+        }
+
+        /* ===========================
+   MOBILE RESPONSIVE
+   =========================== */
+        @media (max-width: 768px) {
+
+            .rail-line,
+            .progress-beam {
+                left: 30px;
+            }
+
+            .clean-step {
+                width: 100%;
+                left: 0;
+                padding-left: 70px;
+                padding-right: 20px;
+                text-align: left;
+            }
+
+            .clean-step.left .step-dot,
+            .clean-step.right .step-dot {
+                left: 20px;
+                right: auto;
+            }
+
+            .clean-step.left .step-number {
+                left: auto;
+                right: 20px;
+            }
+        }
+
+
+        /* ===========================
+   MODAL & CONTAINER
+   =========================== */
+        .roadmap-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f8fafc;
+            z-index: 3000;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .roadmap-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .roadmap-scroll-container {
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            padding: 80px 20px 100px;
+            scroll-behavior: smooth;
+        }
+
+        .roadmap-content-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .roadmap-modal-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .roadmap-modal-header h2 {
+            font-size: 2.5rem;
+            color: #1e293b;
+            margin: 15px 0;
+        }
+
+        .badge-blue {
+            background: #ebf8ff;
+            color: #3182ce;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        /* Close Button */
+        .close-roadmap-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: white;
+            border: 1px solid #cbd5e0;
+            padding: 8px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #4a5568;
+            z-index: 3005;
+            transition: all 0.2s;
+        }
+
+        .close-roadmap-btn:hover {
+            background: #ef4444;
+            color: white;
+            border-color: #ef4444;
+        }
+
+        /* ===========================
+   TIMELINE VISUALS
+   =========================== */
+        .clean-timeline {
+            position: relative;
+            padding-bottom: 50px;
+        }
+
+        /* The Rail & Beam */
+        .rail-line,
+        .progress-beam {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            border-radius: 4px;
+        }
+
+        .rail-line {
+            height: 100%;
+            background-color: #e2e8f0;
+            z-index: 0;
+        }
+
+        .progress-beam {
+            top: 0;
+            height: 0%;
+            background: #3182ce;
+            z-index: 1;
+            transition: height 0.1s linear;
+        }
+
+        /* ===========================
+   STEPS & CARDS
+   =========================== */
+        .clean-step {
+            position: relative;
+            width: 50%;
+            padding: 0 40px;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.5s ease;
+        }
+
+        .clean-step.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Alternating Layout */
+        .clean-step.left {
+            left: 0;
+            text-align: right;
+        }
+
+        .clean-step.right {
+            left: 50%;
+            text-align: left;
+        }
+
+        /* Dots */
+        .step-dot {
+            position: absolute;
+            top: 20px;
+            width: 16px;
+            height: 16px;
+            background: white;
+            border: 3px solid #cbd5e0;
+            border-radius: 50%;
+            z-index: 2;
+            transition: all 0.3s;
+        }
+
+        .clean-step.left .step-dot {
+            right: -10px;
+        }
+
+        .clean-step.right .step-dot {
+            left: -10px;
+        }
+
+        .clean-step.revealed .step-dot {
+            border-color: #3182ce;
+            transform: scale(1.4);
+        }
+
+        /* Content Card */
+        .step-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid #f1f5f9;
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            border-color: #bee3f8;
+        }
+
+        .step-number {
+            font-size: 2.5rem;
+            color: #f7fafc;
+            font-weight: 800;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+        }
+
+        .clean-step.left .step-number {
+            left: 15px;
+            right: auto;
+        }
+
+        .step-card h3 {
+            margin: 0 0 5px 0;
+            color: #2d3748;
+            position: relative;
+        }
+
+        .step-card p {
+            font-size: 0.95rem;
+            color: #718096;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .step-tags span {
+            display: inline-block;
+            background: #edf2f7;
+            color: #4a5568;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-right: 5px;
+        }
+
+        /* ===========================
+   FINAL STEP (The Fix)
+   =========================== */
+        .clean-step.center {
+            width: 100%;
+            left: 0;
+            text-align: center;
+            padding: 0;
+            margin-bottom: 0;
+        }
+
+        .success-icon {
+            width: 60px;
+            height: 60px;
+            background: #48bb78;
+            color: white;
+            font-size: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            margin: 0 auto 15px auto;
+            position: relative;
+            z-index: 5;
+            /* Sit on top of line */
+            border: 6px solid #f8fafc;
+            /* Matches background color to "cut" the line */
+        }
+
+        /* ===========================
+   RESPONSIVE (Mobile View)
+   =========================== */
+        @media (max-width: 768px) {
+
+            /* Move line to left */
+            .rail-line,
+            .progress-beam {
+                left: 20px;
+                transform: none;
+            }
+
+            /* Stack cards */
+            .clean-step {
+                width: 100%;
+                left: 0 !important;
+                text-align: left !important;
+                padding-left: 60px !important;
+                padding-right: 15px !important;
+            }
+
+            /* Adjust dots to left rail */
+            .clean-step.left .step-dot,
+            .clean-step.right .step-dot {
+                left: 14px !important;
+                right: auto !important;
+            }
+
+            /* Adjust Numbers */
+            .clean-step.left .step-number {
+                left: auto;
+                right: 15px;
+            }
+
+            /* Adjust Header */
+            .roadmap-modal-header h2 {
+                font-size: 1.8rem;
+            }
+
+            /* Fix Final Step */
+            .success-icon {
+                margin-left: -10px;
+                display: inline-flex;
+            }
+
+            .clean-step.center {
+                text-align: left;
+                padding-left: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                margin-left: 20px;
+            }
+        }
+
+        /* Special Button for Roadmaps in the grid */
+        .roadmap-btn {
+            background: linear-gradient(90deg, #3182ce 0%, #4facfe 100%);
+            /* Blue Gradient */
+            color: white;
+            border: none;
+            padding: 9px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .roadmap-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(49, 130, 206, 0.3);
+        }
+
+        /* Optional: Add a small icon to the button */
+        .roadmap-btn::before {
+            content: '\f279';
+            /* FontAwesome Map Icon */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+        }
+
+        /* GOOGLE ADDS SIDE BAR */
+        /* Sticky Sidebar Ad */
+        .sticky-ad-container {
+            margin-top: 24px;
+            position: -webkit-sticky;
+            /* Safari */
+            position: sticky;
+            top: 100px;
+            /* 80px header + 20px gap */
+            z-index: 10;
+        }
+
+        .ad-placeholder {
+            width: 100%;
+            height: 250px;
+            /* Standard Medium Rectangle height */
+            background-color: #f1f5f9;
+            border: 2px dashed #cbd5e0;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .ad-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: #cbd5e0;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        /* FIX: Unhide the Hero 'Explore' button on mobile */
+        @media (max-width: 768px) {
+            .hero-buttons .btn-gradient {
+                display: inline-block;
+            }
+        }
+
+
+        /* SOME OTHER CSS CODE */
+        /* ===========================
+   SPA PAGE VISIBILITY UTILS
+   =========================== */
+        .page-section {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+            padding-top: 40px;
+            padding-bottom: 80px;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===========================
+   JOB BOARD STYLES
+   =========================== */
+        .job-board-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .job-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .job-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+            border-color: #3182ce;
+        }
+
+        .job-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .company-logo {
+            width: 50px;
+            height: 50px;
+            background: #f7fafc;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #4a5568;
+        }
+
+        .job-badge {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            background: #ebf8ff;
+            color: #3182ce;
+            font-weight: 700;
+        }
+
+        .job-card h3 {
+            margin: 0 0 5px 0;
+            font-size: 1.25rem;
+            color: #2d3748;
+        }
+
+        .job-company {
+            color: #718096;
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .job-details {
+            display: flex;
+            gap: 15px;
+            color: #a0aec0;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+        }
+
+        .job-details i {
+            margin-right: 5px;
+        }
+
+        .apply-btn {
+            width: 100%;
+            padding: 12px;
+            background: #2d3748;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .apply-btn:hover {
+            background: #3182ce;
+        }
+
+        /* ===========================
+   BUG ARCHIVE (Terminal Style)
+   =========================== */
+        .bug-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .bug-card {
+            background: #1e293b;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #334155;
+            overflow: hidden;
+        }
+
+        .bug-header {
+            background: #0f172a;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .bug-title {
+            color: #f87171;
+            /* Red for error */
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .bug-status {
+            background: #22c55e;
+            color: #0f172a;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .bug-body {
+            padding: 20px;
+            color: #cbd5e1;
+            display: none;
+            /* Hidden by default */
+            border-top: 1px solid #334155;
+        }
+
+        .bug-card.open .bug-body {
+            display: block;
+        }
+
+        .solution-box {
+            background: #0f172a;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 3px solid #22c55e;
+            margin-top: 15px;
+            font-family: monospace;
+        }
+
+        /* ===========================
+   TEAM & ABOUT (Glass)
+   =========================== */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .team-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            border: 1px solid #f7fafc;
+        }
+
+        .team-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            border: 4px solid #ebf8ff;
+        }
+
+        .team-role {
+            color: #3182ce;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        /* ===========================
+   GUIDES / DOCUMENTATION
+   =========================== */
+        .doc-wrapper {
+            display: flex;
+            gap: 40px;
+        }
+
+        .doc-sidebar {
+            width: 250px;
+            flex-shrink: 0;
+            border-right: 1px solid #e2e8f0;
+            padding-right: 20px;
+        }
+
+        .doc-link {
+            display: block;
+            padding: 10px 15px;
+            color: #718096;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 5px;
+            transition: all 0.2s;
+        }
+
+        .doc-link:hover,
+        .doc-link.active {
+            background: #ebf8ff;
+            color: #3182ce;
+            font-weight: 600;
+        }
+
+        .doc-content {
+            flex: 1;
+        }
+
+        .doc-content h1 {
+            font-size: 2.5rem;
+            color: #1a202c;
+            margin-bottom: 20px;
+        }
+
+        .doc-content h2 {
+            font-size: 1.8rem;
+            color: #2d3748;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .doc-content p {
+            color: #4a5568;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .doc-content ul {
+            margin-left: 20px;
+            color: #4a5568;
+            margin-bottom: 20px;
+        }
+
+        .doc-content li {
+            margin-bottom: 8px;
+        }
+
+        /* Mobile Adjustments */
+        @media(max-width: 768px) {
+            .doc-wrapper {
+                flex-direction: column;
+            }
+
+            .doc-sidebar {
+                width: 100%;
+                border-right: 0;
+                border-bottom: 1px solid #e2e8f0;
+                padding-bottom: 20px;
+                margin-bottom: 20px;
+            }
+        }
+
+        /* ===========================
+   CAREER HUB LAYOUT (Split Screen)
+   =========================== */
+        .hub-container {
+            display: flex;
+            gap: 40px;
+            min-height: 600px;
+        }
+
+        .hub-sidebar {
+            width: 280px;
+            flex-shrink: 0;
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .hub-nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            padding: 15px;
+            border: none;
+            background: transparent;
+            color: #64748b;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 10px;
+            text-align: left;
+            transition: all 0.2s;
+            margin-bottom: 5px;
+        }
+
+        .hub-nav-btn:hover {
+            background: #f1f5f9;
+            color: #3182ce;
+        }
+
+        .hub-nav-btn.active {
+            background: #ebf8ff;
+            color: #3182ce;
+            border-left: 4px solid #3182ce;
+            /* Accent Bar */
+        }
+
+        .hub-content {
+            flex: 1;
+        }
+
+        .content-panel {
+            display: none;
+            /* Hidden by default */
+            animation: fadeIn 0.4s ease;
+        }
+
+        .content-panel.active {
+            display: block;
+        }
+
+        /* Resume & Salary Cards */
+        .tip-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3182ce;
+        }
+
+        .tip-card.warning {
+            border-left-color: #f59e0b;
+        }
+
+        .tip-card.success {
+            border-left-color: #10b981;
+        }
+
+        .script-box {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: monospace;
+            border: 1px dashed #cbd5e0;
+            color: #334155;
+            margin-top: 10px;
+        }
+
+        /* ===========================
+   LEARNING HUB (Tutorials)
+   =========================== */
+        .tutorial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .tutorial-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s;
+        }
+
+        .tutorial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .t-thumb {
+            height: 160px;
+            background: linear-gradient(135deg, #e0e7ff 0%, #fae8ff 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #6366f1;
+        }
+
+        .t-body {
+            padding: 20px;
+        }
+
+        .t-tag {
+            font-size: 0.75rem;
+            color: #64748b;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .t-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: #1e293b;
+        }
+
+        /* ===========================
+   SUPPORT (FAQ Accordion)
+   =========================== */
+        .faq-item {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            font-weight: 700;
+            color: #1e293b;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            padding: 0 20px 20px;
+            color: #64748b;
+            display: none;
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question {
+            color: #3182ce;
+        }
+
+        /* ===========================
+   RESPONSIVE
+   =========================== */
+        @media (max-width: 900px) {
+            .hub-container {
+                flex-direction: column;
+            }
+
+            .hub-sidebar {
+                width: 100%;
+                position: relative;
+                top: 0;
+                display: flex;
+                overflow-x: auto;
+                padding: 10px;
+                gap: 10px;
+            }
+
+            .hub-nav-btn {
+                width: auto;
+                white-space: nowrap;
+                margin: 0;
+                border-left: none;
+                border-bottom: 3px solid transparent;
+            }
+
+            .hub-nav-btn.active {
+                border-left: none;
+                border-bottom-color: #3182ce;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container nav-container">
+
+            <a href="#" class="nav-logo">
+                Tech<span class="highlight">Guide</span>.
+            </a>
+
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="#" class="nav-link active">Home</a></li>
+                    <li><a href="#" class="nav-link">Roadmaps</a></li>
+                    <li><a href="#" class="nav-link">Job Guides</a></li>
+                    <li><a href="#" class="nav-link">Bug Fixes</a></li>
+                    <li><a href="#" class="nav-link">About</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="#" class="btn-gradient">Get Started</a>
+
+                <div class="mobile-toggle" id="mobile-menu-btn">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </div>
+
+        </div>
+    </header>
+    <!-- NAV -->
+    <!-- <header class="site-nav" role="banner">
+        <div class="nav-inner">
+            <a class="brand" href="#home" aria-label="NICEHE home">
+                <div class="logo">NH</div>
+                <div>
+                    <div style="font-weight:800;color:var(--primary)">NICEHE</div>
+                    <div style="font-size:12px;color:var(--muted)">Tech blog & guides</div>
+                </div>
+            </a>
+
+            <nav aria-label="Main navigation" class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#blogs">Blogs</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </nav>
+
+            <div style="display:flex;gap:10px;align-items:center">
+                <button class="cta" onclick="document.getElementById('search').focus()">Explore</button>
+                <button class="hamburger" aria-label="Toggle menu" id="hambtn" onclick="toggleMobileMenu()"
+                    style="display:none">☰</button>
+            </div>
+        </div>
+    </header> -->
+
+    <!-- MOBILE LINKS -->
+    <div id="mobileMenu"
+        style="display:none;background:var(--card);padding:12px;border-bottom:1px solid rgba(2,6,23,0.03)">
+        <div style="display:flex;flex-direction:column;gap:6px;max-width:var(--maxwidth);margin:auto;">
+            <a href="#home" onclick="toggleMobileMenu()">Home</a>
+            <a href="#blogs" onclick="toggleMobileMenu()">Blogs</a>
+            <a href="#about" onclick="toggleMobileMenu()">About</a>
+            <a href="#contact" onclick="toggleMobileMenu()">Contact</a>
+        </div>
+    </div>
+
+    <section class="hero-section">
+        <div class="container hero-container">
+
+            <div class="hero-content">
+                <span class="hero-badge">🚀 Updated for 2025</span>
+                <h1 class="hero-title">
+                    Your Roadmap to a <br>
+                    <span class="highlight-text">Career in Tech.</span>
+                </h1>
+                <p class="hero-desc">
+                    Stop getting lost in tutorial hell. We provide structured learning paths, real-world bug fixes, and
+                    the job-hunting strategies you need to land your first developer role.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn-primary">Start Learning</a>
+                    <button id="open-roadmap-btn" class="btn-gradient">Explore Roadmaps</button>
+                </div>
+
+                <div class="hero-stats">
+                    <p><span>500+</span> Guides</p>
+                    <div class="dot"></div>
+                    <p><span>10k+</span> Readers</p>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="code-window">
+                    <div class="window-header">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <div class="window-body">
+                        <div class="code-line"><span class="keyword">const</span> <span class="var">dreamJob</span> =
+                            <span class="string">"Full Stack Dev"</span>;
+                        </div>
+                        <div class="code-line"><span class="keyword">let</span> <span class="var">skills</span> = [<span
+                                class="string">"React"</span>, <span class="string">"Node"</span>, <span
+                                class="string">"System Design"</span>];</div>
+                        <div class="code-line"><br></div>
+                        <div class="code-line"><span class="func">while</span> (<span class="var">learning</span>) {
+                        </div>
+                        <div class="code-line indent"> <span class="func">buildProjects</span>();</div>
+                        <div class="code-line indent"> <span class="func">getHired</span>();</div>
+                        <div class="code-line">}</div>
+                    </div>
+                    <div class="floating-badge">
+                        <i class="fa-solid fa-check-circle"></i> Hired!
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- HERO -->
+
+
+
+
+    <!-- ROADMPAS -->
+
+
+    <div class="modal-overlay" id="roadmap-modal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>Choose Your Career Path</h3>
+                <button class="close-modal" id="close-modal-btn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="role-grid">
+                <div class="role-card" onclick="showRoadmap('fullstack')">
+                    <div class="role-icon blue"><i class="fa-solid fa-layer-group"></i></div>
+                    <h4>Full Stack Dev</h4>
+                    <p>MERN, Next.js, Databases</p>
+                </div>
+
+                <div class="role-card" onclick="showRoadmap('ai')">
+                    <div class="role-icon purple"><i class="fa-solid fa-brain"></i></div>
+                    <h4>AI Engineer</h4>
+                    <p>Python, TensorFlow, LLMs</p>
+                </div>
+
+                <div class="role-card" onclick="showRoadmap('writer')">
+                    <div class="role-icon green"><i class="fa-solid fa-pen-nib"></i></div>
+                    <h4>Tech Writer</h4>
+                    <p>Docs, Markdown, API Ref</p>
+                </div>
+
+                <div class="role-card" onclick="showRoadmap('devops')">
+                    <div class="role-icon orange"><i class="fa-solid fa-server"></i></div>
+                    <h4>DevOps</h4>
+                    <p>Docker, K8s, CI/CD</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <section id="roadmap-display" class="cinematic-wrapper hidden">
+        <div class="star-field"></div>
+        <div class="container relative-container">
+
+            <div class="cinematic-header">
+                <h2 id="roadmap-title" class="neon-text">Protocol: Full Stack</h2>
+                <p>Initializing Sequence...</p>
+            </div>
+
+            <div class="timeline-track">
+
+                <div class="center-line"></div>
+
+                <div class="moving-beam" id="scroll-beam">
+                    <div class="beam-head"></div>
+                </div>
+
+                <div class="checkpoint left" data-index="1">
+                    <div class="checkpoint-marker"></div>
+                    <div class="holo-card">
+                        <div class="card-glow"></div>
+                        <h3>01. The Architecture</h3>
+                        <p>Initialize structure. Master Semantic HTML5, CSS Grid Systems, and Responsive viewports.</p>
+                        <div class="tech-stack">
+                            <span>HTML5</span><span>CSS3</span><span>Git</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checkpoint right" data-index="2">
+                    <div class="checkpoint-marker"></div>
+                    <div class="holo-card">
+                        <div class="card-glow"></div>
+                        <h3>02. Logic Core</h3>
+                        <p>Inject interactivity. JavaScript ES6+, Async/Await patterns, and DOM manipulation.</p>
+                        <div class="tech-stack">
+                            <span>JS</span><span>V8 Engine</span><span>Fetch API</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checkpoint left" data-index="3">
+                    <div class="checkpoint-marker"></div>
+                    <div class="holo-card">
+                        <div class="card-glow"></div>
+                        <h3>03. Framework Injection</h3>
+                        <p>Scale the UI. React.js Component lifecycle, Hooks, and Global State Management.</p>
+                        <div class="tech-stack">
+                            <span>React</span><span>Redux</span><span>Next.js</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checkpoint right" data-index="4">
+                    <div class="checkpoint-marker"></div>
+                    <div class="holo-card">
+                        <div class="card-glow"></div>
+                        <h3>04. Server Integration</h3>
+                        <p>Backend connection established. Node.js runtime, Express routing, and Database clusters.</p>
+                        <div class="tech-stack">
+                            <span>Node</span><span>MongoDB</span><span>Rest API</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checkpoint center" data-index="5">
+                    <div class="final-trophy">
+                        <i class="fa-solid fa-rocket"></i>
+                    </div>
+                    <h3 class="neon-text">SYSTEM READY: HIRED</h3>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN PAGE -->
+    <main>
+        <section class="hero container" id="home">
+            <div class="hero-inner">
+                <h1>IT Jobs, Roadmaps, Tech News & Practical Fixes</h1>
+                <p>Actionable guides, curated roadmaps to grow your tech career, daily news highlights and solutions to
+                    common technical issues.</p>
+            </div>
+        </section>
+
+        <!-- CONTROLS -->
+        <section class="container" id="blogs" aria-labelledby="blogs-heading">
+            <h2 id="blogs-heading" style="margin:0 0 10px;color:var(--primary)">Latest Articles</h2>
+
+            <div class="controls">
+                <div class="search" role="search" aria-label="Search articles">
+                    <svg width="18" height="18" viewBox="0 0 24 24" style="opacity:0.7;margin-right:8px">
+                        <path d="M21 21l-4.35-4.35" stroke="#111827" stroke-width="1.6" stroke-linecap="round"
+                            stroke-linejoin="round" fill="none"></path>
+                        <circle cx="11" cy="11" r="6" stroke="#111827" stroke-width="1.6" fill="none"></circle>
+                    </svg>
+                    <input id="search" type="search" placeholder="Search by title, category or content..."
+                        aria-label="Search articles" />
+                </div>
+
+                <div class="filters" role="tablist" aria-label="Filter by category" id="filterChips"></div>
+
+                <div style="margin-left:auto" class="muted" id="resultsCount">Showing 0</div>
+            </div>
+
+            <div class="grid">
+                <!-- POSTS -->
+                <div>
+                    <div class="posts" id="postsList" aria-live="polite"></div>
+
+
+                </div>
+
+                <!-- SIDEBAR -->
+                <aside class="sidebar" aria-label="Sidebar">
+                    <div class="card side">
+                        <h4 style="margin-top:0;">Categories</h4>
+                        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;" id="sidebarCats"></div>
+                    </div>
+
+                    <div class="card side" style="margin-top:12px">
+                        <h4 style="margin-top:0">Recent</h4>
+                        <div class="recent-list" id="recentList"></div>
+                    </div>
+
+                    <div class="card side" style="margin-top:12px">
+                        <h4 style="margin-top:0">Saved</h4>
+                        <div id="savedList" class="saved-list muted">No saved articles yet.</div>
+                    </div>
+                    <aside class="sidebar" aria-label="Sidebar">
+                        <div class="sticky-ad-container">
+                            <div class="ad-label">Sponsored</div>
+                            <div class="card side">
+                                <div class="ad-placeholder">
+                                    <i class="fa-solid fa-rectangle-ad"
+                                        style="font-size: 2rem; margin-bottom: 10px;"></i>
+                                    <span>Ad Space (300x250)</span>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </aside>
+                </aside>
+
+            </div>
+        </section>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+        <section class="about-section">
+            <div class="container">
+
+                <div class="about-header">
+                    <h4 class="sub-title">WHO WE ARE</h4>
+                    <h2 class="main-title">Bridging the Gap Between Learning & Hired</h2>
+                    <div class="header-line"></div>
+                    <p class="about-description">
+                        Welcome to <strong>[Your Blog Name]</strong>. We believe that breaking into the tech industry
+                        shouldn’t be a mystery. We are a community-driven platform dedicated to demystifying complex
+                        technologies and providing actionable career advice. Whether you are a student, a career
+                        switcher, or a junior developer, we provide the map to your destination.
+                    </p>
+                </div>
+
+                <div class="features-grid">
+
+                    <div class="feature-card">
+                        <div class="icon-box">
+                            <i class="fa-solid fa-briefcase"></i>
+                        </div>
+                        <h3>Job Seeker Guidance</h3>
+                        <p>We don't just teach code; we teach careers. Get guides on ATS-friendly resumes, behavioral
+                            interviews, and salary negotiation.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="icon-box">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                        </div>
+                        <h3>Tech Roadmaps</h3>
+                        <p>Stop guessing what to learn next. We provide structured learning paths for Frontend, Backend,
+                            DevOps, and more.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="icon-box">
+                            <i class="fa-solid fa-newspaper"></i>
+                        </div>
+                        <h3>Tech News & Trends</h3>
+                        <p>Technology moves fast. We distill the noise into signals, keeping you updated on AI,
+                            frameworks, and industry shifts.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="icon-box">
+                            <i class="fa-solid fa-bug"></i>
+                        </div>
+                        <h3>The Bug Fix Archive</h3>
+                        <p>Stuck on an error? Our troubleshooting guides provide real-world solutions to the technical
+                            issues that stall your progress.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="career-page" class="page-section container">
+            <div class="job-board-header">
+                <span class="badge-blue">Career Accelerator</span>
+                <h2 style="font-size: 2.5rem; margin: 10px 0;">The Career Hub</h2>
+                <p class="muted">Everything you need to land the offer and maximize your worth.</p>
+            </div>
+
+            <div class="hub-container">
+                <aside class="hub-sidebar">
+                    <button class="hub-nav-btn active" onclick="openHubTab('resume', this)">
+                        <i class="fa-solid fa-file-contract"></i> Resume Guide
+                    </button>
+                    <button class="hub-nav-btn" onclick="openHubTab('interview', this)">
+                        <i class="fa-solid fa-users-viewfinder"></i> Interview Prep
+                    </button>
+                    <button class="hub-nav-btn" onclick="openHubTab('salary', this)">
+                        <i class="fa-solid fa-sack-dollar"></i> Salary Negotiation
+                    </button>
+                </aside>
+
+                <div class="hub-content">
+
+                    <div id="tab-resume" class="content-panel active">
+                        <h2 style="margin-top:0">The ATS-Proof Resume</h2>
+                        <p>Recruiters spend 6 seconds scanning your resume. Here is how to make them count.</p>
+
+                        <div class="tip-card success">
+                            <h4><i class="fa-solid fa-check-circle"></i> The Google XYZ Formula</h4>
+                            <p>Don't just list duties. Use this formula: <strong>"Accomplished [X] as measured by [Y],
+                                    by doing [Z]."</strong></p>
+                            <div class="script-box">
+                                <strong>Bad:</strong> "Wrote code for the login page."<br>
+                                <strong>Good:</strong> "Reduced login latency by 20% (Y) by refactoring the OAuth
+                                authentication flow (Z) for 50k+ daily users (X)."
+                            </div>
+                        </div>
+
+                        <h3>Key Resume Sections</h3>
+                        <ul style="line-height: 1.8; color: #4a5568; margin-bottom: 20px;">
+                            <li><strong>Header:</strong> Name, GitHub Link, Portfolio Link, LinkedIn (No full address).
+                            </li>
+                            <li><strong>Skills:</strong> Group them (e.g., Languages: JS, Python; Tools: Docker, AWS).
+                            </li>
+                            <li><strong>Experience:</strong> Reverse chronological. Focus on <em>impact</em>, not just
+                                tasks.</li>
+                            <li><strong>Projects:</strong> Critical for juniors. Show you can build.</li>
+                        </ul>
+                    </div>
+
+                    <div id="tab-interview" class="content-panel">
+                        <h2 style="margin-top:0">Interview Preparation</h2>
+
+                        <div class="tip-card">
+                            <h4>1. The Behavioral Round</h4>
+                            <p>Prepare stories for the "Tell me about a time..." questions using the
+                                <strong>STAR</strong> method.</p>
+                            <ul>
+                                <li><strong>Situation:</strong> Set the scene.</li>
+                                <li><strong>Task:</strong> What was the goal?</li>
+                                <li><strong>Action:</strong> What specific steps did YOU take?</li>
+                                <li><strong>Result:</strong> What was the outcome? (Use numbers).</li>
+                            </ul>
+                        </div>
+
+                        <div class="tip-card warning">
+                            <h4>2. System Design (Mid/Senior)</h4>
+                            <p>Don't jump to coding. Ask clarifying questions first.</p>
+                            <div class="script-box">
+                                "Before we design the database schema for this URL shortener, I'd like to understand the
+                                constraints. <br>
+                                - What is the expected Read/Write ratio?<br>
+                                - Do we need immediate consistency or is eventual consistency okay?"
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tab-salary" class="content-panel">
+                        <h2 style="margin-top:0">Salary Negotiation</h2>
+                        <p>You leave money on the table if you don't negotiate. It is expected in the tech industry.</p>
+
+                        <div class="tip-card success">
+                            <h4>Rule #1: Never give the first number</h4>
+                            <div class="script-box">
+                                <strong>Recruiter:</strong> "What are your salary expectations?"<br>
+                                <strong>You:</strong> "Right now, I'm focused on finding the right fit for my skills.
+                                Could you share the budget range allocated for this position?"
+                            </div>
+                        </div>
+
+                        <div class="tip-card">
+                            <h4>The Counter Offer</h4>
+                            <p>If they offer $100k, but you want $115k:</p>
+                            <div class="script-box">
+                                "I'm really excited about the team and the mission. However, looking at the market rate
+                                for this role and my experience with [Specific Skill], I was expecting something closer
+                                to the $115k range. Is there flexibility to get closer to that number?"
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="learn-page" class="page-section container">
+            <div class="job-board-header">
+                <span class="badge-blue">Knowledge Base</span>
+                <h2 style="font-size: 2.5rem; margin: 10px 0;">Tutorials & Docs</h2>
+                <div class="filters" style="justify-content: center; margin-top: 20px;">
+                    <button class="chip active" onclick="filterLearn('all')">All</button>
+                    <button class="chip" onclick="filterLearn('tutorial')">Tutorials</button>
+                    <button class="chip" onclick="filterLearn('doc')">Documentation</button>
+                </div>
+            </div>
+
+            <div class="tutorial-grid">
+                <div class="tutorial-card type-tutorial">
+                    <div class="t-thumb"><i class="fa-brands fa-react"></i></div>
+                    <div class="t-body">
+                        <span class="t-tag">Tutorial</span>
+                        <div class="t-title">Build a SaaS with Next.js 14</div>
+                        <p class="muted" style="font-size: 0.9rem;">A complete guide to App Router, Server Actions, and
+                            Stripe integration.</p>
+                        <button class="small-btn" style="margin-top: 10px;">Start Building</button>
+                    </div>
+                </div>
+
+                <div class="tutorial-card type-doc">
+                    <div class="t-thumb" style="background:#ecfdf5; color:#10b981"><i class="fa-solid fa-book"></i>
+                    </div>
+                    <div class="t-body">
+                        <span class="t-tag">Documentation</span>
+                        <div class="t-title">TechGuide API Reference</div>
+                        <p class="muted" style="font-size: 0.9rem;">Official endpoints, authentication methods, and rate
+                            limits.</p>
+                        <button class="small-btn" style="margin-top: 10px;">Read Docs</button>
+                    </div>
+                </div>
+
+                <div class="tutorial-card type-tutorial">
+                    <div class="t-thumb" style="background:#fff7ed; color:#f97316"><i class="fa-brands fa-python"></i>
+                    </div>
+                    <div class="t-body">
+                        <span class="t-tag">Tutorial</span>
+                        <div class="t-title">Python for Data Analysis</div>
+                        <p class="muted" style="font-size: 0.9rem;">Master Pandas and NumPy by analyzing real-world
+                            stock market data.</p>
+                        <button class="small-btn" style="margin-top: 10px;">Start Learning</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="support-page" class="page-section container">
+            <div class="contact-grid">
+                <div>
+                    <h2 style="margin-top:0">Frequently Asked Questions</h2>
+                    <p class="muted" style="margin-bottom: 20px;">Quick answers to common questions.</p>
+
+                    <div class="faq-item" onclick="toggleFaq(this)">
+                        <button class="faq-question">
+                            How do I access the Pro Roadmaps?
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            Most roadmaps are free. The Pro versions include detailed video walkthroughs and are
+                            available via our Patreon subscription.
+                        </div>
+                    </div>
+
+                    <div class="faq-item" onclick="toggleFaq(this)">
+                        <button class="faq-question">
+                            Can I contribute an article?
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            Yes! We love community contributions. Please send a pitch to our editorial team via the
+                            contact form.
+                        </div>
+                    </div>
+
+                    <div class="faq-item" onclick="toggleFaq(this)">
+                        <button class="faq-question">
+                            I found a bug in a code snippet.
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            Please report it using the contact form on the right. We update our Bug Archive weekly.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-card">
+                    <h3>Contact Support</h3>
+                    <form>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" placeholder="you@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Subject</label>
+                            <select style="width:100%; padding:12px; border-radius:10px; border:1px solid #ddd;">
+                                <option>General Inquiry</option>
+                                <option>Report a Bug</option>
+                                <option>Billing Issue</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea rows="4" placeholder="How can we help?"></textarea>
+                        </div>
+                        <button class="submit-btn">Submit Ticket</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="privacy-page" class="page-section container">
+            <div
+                style="max-width: 800px; margin: 0 auto; background: white; padding: 40px; border-radius: 12px; border: 1px solid #e2e8f0;">
+                <h1 style="border-bottom: 1px solid #e2e8f0; padding-bottom: 20px; margin-bottom: 30px;">Privacy Policy
+                </h1>
+
+                <div style="color: #4a5568; line-height: 1.8;">
+                    <p><strong>Effective Date:</strong> January 1, 2025</p>
+                    <p>At TechGuide ("we", "us", "our"), we respect your privacy and are committed to protecting the
+                        personal information you share with us. This policy outlines how we handle your data.</p>
+
+                    <h3 style="color:#2d3748; margin-top:30px;">1. Information We Collect</h3>
+                    <p>We collect information you provide directly to us, such as when you subscribe to our newsletter,
+                        submit a contact form, or create an account. This typically includes your name and email
+                        address.</p>
+
+                    <h3 style="color:#2d3748; margin-top:30px;">2. How We Use Your Data</h3>
+                    <ul style="margin-left:20px;">
+                        <li>To send you the weekly tech newsletter.</li>
+                        <li>To respond to your support requests.</li>
+                        <li>To improve website performance via anonymous analytics (Google Analytics).</li>
+                    </ul>
+
+                    <h3 style="color:#2d3748; margin-top:30px;">3. Cookies</h3>
+                    <p>We use local storage (not cookies) to save your "Bookmarked Articles" preference on your specific
+                        device. We do not track this across devices.</p>
+
+                    <h3 style="color:#2d3748; margin-top:30px;">4. Third-Party Services</h3>
+                    <p>We may share anonymous data with service providers to help us operate our business, such as email
+                        delivery services (e.g., Mailchimp) and analytics providers.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="jobs-page" class="page-section container">
+            <div class="job-board-header">
+                <span class="badge-blue">Careers</span>
+                <h2 style="font-size: 2.5rem; margin: 10px 0;">Curated Tech Jobs</h2>
+                <p class="muted">Verified opportunities from companies that value code quality.</p>
+            </div>
+
+            <div class="controls" style="margin-bottom: 30px;">
+                <div class="search">
+                    <input type="text" placeholder="Search role, stack or company...">
+                </div>
+                <div class="filters">
+                    <button class="chip active">All</button>
+                    <button class="chip">Remote</button>
+                    <button class="chip">Frontend</button>
+                    <button class="chip">Backend</button>
+                    <button class="chip">$100k+</button>
+                </div>
+            </div>
+
+            <div class="job-grid">
+                <div class="job-card">
+                    <div class="job-head">
+                        <div class="company-logo"><i class="fa-brands fa-react"></i></div>
+                        <span class="job-badge">Remote</span>
+                    </div>
+                    <h3>Senior React Engineer</h3>
+                    <div class="job-company">Vercel Inc.</div>
+                    <div class="job-details">
+                        <span><i class="fa-solid fa-location-dot"></i> Worldwide</span>
+                        <span><i class="fa-solid fa-money-bill"></i> $140k - $180k</span>
+                    </div>
+                    <div class="step-tags" style="margin-bottom: 20px;">
+                        <span>Next.js</span><span>TypeScript</span><span>Tailwind</span>
+                    </div>
+                    <button class="apply-btn">Apply Now</button>
+                </div>
+
+                <div class="job-card">
+                    <div class="job-head">
+                        <div class="company-logo"><i class="fa-brands fa-python"></i></div>
+                        <span class="job-badge">Hybrid</span>
+                    </div>
+                    <h3>AI/ML Pipeline Engineer</h3>
+                    <div class="job-company">OpenAI</div>
+                    <div class="job-details">
+                        <span><i class="fa-solid fa-location-dot"></i> San Francisco</span>
+                        <span><i class="fa-solid fa-money-bill"></i> $200k+</span>
+                    </div>
+                    <div class="step-tags" style="margin-bottom: 20px;">
+                        <span>Python</span><span>PyTorch</span><span>Kubernetes</span>
+                    </div>
+                    <button class="apply-btn">Apply Now</button>
+                </div>
+
+                <div class="job-card">
+                    <div class="job-head">
+                        <div class="company-logo"><i class="fa-brands fa-aws"></i></div>
+                        <span class="job-badge">Remote</span>
+                    </div>
+                    <h3>DevOps Specialist</h3>
+                    <div class="job-company">Amazon Web Services</div>
+                    <div class="job-details">
+                        <span><i class="fa-solid fa-location-dot"></i> Seattle/Remote</span>
+                        <span><i class="fa-solid fa-money-bill"></i> $160k</span>
+                    </div>
+                    <div class="step-tags" style="margin-bottom: 20px;">
+                        <span>Terraform</span><span>Docker</span><span>Go</span>
+                    </div>
+                    <button class="apply-btn">Apply Now</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="bugs-page" class="page-section container">
+            <div class="job-board-header">
+                <span class="badge-blue" style="background:#fee2e2; color:#ef4444;">Troubleshooting</span>
+                <h2 style="font-size: 2.5rem; margin: 10px 0;">The Bug Archive</h2>
+                <p class="muted">Real solutions to the errors that keep you up at night.</p>
+            </div>
+
+            <div class="bug-container">
+                <div class="bug-card" onclick="this.classList.toggle('open')">
+                    <div class="bug-header">
+                        <div class="bug-title">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                            Error: Hydration failed because the initial UI...
+                        </div>
+                        <div class="bug-status">Solved</div>
+                    </div>
+                    <div class="bug-body">
+                        <p><strong>Context:</strong> Common in Next.js when HTML rendered on the server differs from the
+                            client.</p>
+                        <div class="solution-box">
+                            // Fix: Ensure you aren't using random numbers or window objects during SSR.<br>
+                            // Use useEffect to run client-only code.<br><br>
+                            const [mounted, setMounted] = useState(false);<br>
+                            useEffect(() => setMounted(true), []);<br>
+                            if (!mounted) return null;
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bug-card" onclick="this.classList.toggle('open')">
+                    <div class="bug-header">
+                        <div class="bug-title">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                            CORS header 'Access-Control-Allow-Origin' missing
+                        </div>
+                        <div class="bug-status">Solved</div>
+                    </div>
+                    <div class="bug-body">
+                        <p><strong>Context:</strong> Your frontend (localhost:3000) is trying to hit your backend
+                            (localhost:5000).</p>
+                        <div class="solution-box">
+                            // Fix (Express.js): Install 'cors' package<br>
+                            const cors = require('cors');<br>
+                            app.use(cors({ origin: 'http://localhost:3000' }));
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bug-card" onclick="this.classList.toggle('open')">
+                    <div class="bug-header">
+                        <div class="bug-title">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                            IndentationError: unexpected indent
+                        </div>
+                        <div class="bug-status">Solved</div>
+                    </div>
+                    <div class="bug-body">
+                        <p><strong>Context:</strong> Python relies on whitespace. You likely mixed tabs and spaces.</p>
+                        <div class="solution-box">
+                            # Fix: Configure your editor (VS Code)<br>
+                            # to "Convert Indentation to Spaces"<br>
+                            # and ensure consistency (usually 4 spaces).
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="guides-page" class="page-section container">
+            <div class="doc-wrapper">
+                <aside class="doc-sidebar">
+                    <h4 style="margin-bottom:20px;">Career Center</h4>
+                    <a href="#" class="doc-link active" onclick="switchGuide('resume')">Resume Guide</a>
+                    <a href="#" class="doc-link" onclick="switchGuide('interview')">Interview Prep</a>
+                    <a href="#" class="doc-link" onclick="switchGuide('salary')">Salary Negotiation</a>
+                    <h4 style="margin:20px 0;">Technical Docs</h4>
+                    <a href="#" class="doc-link" onclick="switchGuide('tutorials')">Tutorials</a>
+                    <a href="#" class="doc-link" onclick="switchGuide('docs')">Documentation</a>
+                </aside>
+
+                <article class="doc-content" id="guide-content-area">
+                    <h1>The ATS-Proof Resume Guide</h1>
+                    <p>Your resume is not read by humans first; it's read by an Application Tracking System (ATS). Here
+                        is how to beat the bot.</p>
+                    <h2>1. Use Standard Formatting</h2>
+                    <p>Avoid double columns, images, or skill bars. Use standard headings like "Experience",
+                        "Education", and "Skills".</p>
+                    <h2>2. The STAR Method</h2>
+                    <p>Describe your experience using <strong>Situation, Task, Action, Result</strong>.</p>
+                    <ul>
+                        <li><strong>Bad:</strong> "Worked on API."</li>
+                        <li><strong>Good:</strong> "Designed a REST API (Action) for a high-traffic e-commerce platform
+                            (Situation) which reduced load times by 40% (Result)."</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section id="about-page" class="page-section container">
+            <div class="job-board-header">
+                <h2 style="font-size: 2.5rem;">Our Team</h2>
+                <p class="muted">The developers and writers behind TechGuide.</p>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-card">
+                    <img src="https://i.pravatar.cc/150?img=11" alt="Member" class="team-img">
+                    <h3>Alex Chen</h3>
+                    <div class="team-role">Founder & Lead Dev</div>
+                    <p class="muted">Ex-Google engineer passionate about simplifying complex tech topics.</p>
+                </div>
+                <div class="team-card">
+                    <img src="https://i.pravatar.cc/150?img=5" alt="Member" class="team-img">
+                    <h3>Sarah Jones</h3>
+                    <div class="team-role">Head of Content</div>
+                    <p class="muted">Technical writer with a knack for making documentation beautiful.</p>
+                </div>
+                <div class="team-card">
+                    <img src="https://i.pravatar.cc/150?img=8" alt="Member" class="team-img">
+                    <h3>David Smith</h3>
+                    <div class="team-role">DevOps Specialist</div>
+                    <p class="muted">Ensuring our roadmaps are production-ready and scalable.</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 100px; padding-top: 50px; border-top: 1px solid #e2e8f0;">
+                <h2>Privacy Policy</h2>
+                <p class="muted">Last updated: December 2025</p>
+                <p>At TechGuide, we take your privacy seriously. We do not sell your data. We use cookies strictly for
+                    site functionality (like saving your favorite articles locally).</p>
+                <h3>Data Collection</h3>
+                <p>We collect email addresses only when you explicitly subscribe to our newsletter. This list is managed
+                    via a secure third-party provider.</p>
+                <h3>Contact Support</h3>
+                <p>For any legal or support inquiries, please email legal@techguide.com.</p>
+            </div>
+        </section>
+        <!-- CONTACT -->
+        <section class="newsletter-section">
+            <div class="container newsletter-wrapper">
+                <div class="newsletter-content">
+                    <h2>Stay Ahead of the Tech Curve</h2>
+                    <p>Join 5,000+ developers receiving our weekly roadmaps, job search hacks, and bug fixes directly in
+                        their inbox.</p>
+                </div>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit">Subscribe Now</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <div class="container">
+                <div class="contact-header">
+                    <h4 class="sub-title">GET IN TOUCH</h4>
+                    <h2 class="main-title">Have a Question or a Success Story?</h2>
+                    <div class="header-line"></div>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>Let's Chat</h3>
+                        <p>Whether you found a bug in our code, need advice on a roadmap, or just want to say hi, we'd
+                            love to hear from you.</p>
+
+                        <div class="info-item">
+                            <i class="fa-solid fa-envelope"></i>
+                            <span>support@[yourblogname].com</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fa-brands fa-linkedin"></i>
+                            <span>/company/[yourblogname]</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fa-brands fa-twitter"></i>
+                            <span>@[yourblogname]</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-card">
+                        <form>
+                            <div class="form-group">
+                                <label>Your Name</label>
+                                <input type="text" placeholder="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" placeholder="john@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Message</label>
+                                <textarea rows="5" placeholder="Tell us about your project or issue..."></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER  -->
+        <footer class="modern-footer">
+
+            <div class="footer-gradient-bar"></div>
+
+            <div class="container">
+                <div class="footer-top">
+
+                    <div class="footer-brand">
+                        <h2 class="brand-logo">Tech<span class="highlight">Guide</span>.</h2>
+                        <p class="brand-desc">
+                            Helping developers bridge the gap between "Hello World" and their dream job. We provide the
+                            map; you walk the path.
+                        </p>
+                        <div class="social-icons">
+                            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#"><i class="fa-brands fa-github"></i></a>
+                            <a href="#"><i class="fa-brands fa-discord"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="footer-nav">
+                        <h4>Learn</h4>
+                        <ul>
+                            <li><a href="#">Roadmaps <span class="badge">Popular</span></a></li>
+                            <li><a href="#">Tutorials</a></li>
+                            <li><a href="#">Documentation</a></li>
+                            <li><a href="#">Bug Fix Archive</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-nav">
+                        <h4>Career</h4>
+                        <ul>
+                            <li><a href="#">Job Board</a></li>
+                            <li><a href="#">Resume Guide</a></li>
+                            <li><a href="#">Salary Negotiation</a></li>
+                            <li><a href="#">Interview Prep <span class="badge new">New</span></a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-nav">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Our Team</a></li>
+                            <li><a href="#">Contact Support</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="footer-divider"></div>
+
+                <div class="footer-bottom">
+                    <p>&copy; 2025 TechGuide Inc. Built for Developers.</p>
+                    <div class="legal-links">
+                        <a href="#">Terms</a>
+                        <span class="separator">•</span>
+                        <a href="#">Privacy</a>
+                        <span class="separator">•</span>
+                        <a href="#">Cookies</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+    </main>
+
+    <!-- FULL-SCREEN ARTICLE OVERLAY -->
+    <div id="overlay" class="overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Article view">
+        <div class="article-frame" role="document" aria-labelledby="articleTitle">
+            <div class="article-main" id="articleMain" tabindex="-1">
+                <div style="display:flex;align-items:center;gap:12px;justify-content:space-between">
+                    <div>
+                        <div class="tag" id="articleTag"
+                            style="display:inline-block;padding:8px 12px;border-radius:999px;background:rgba(79,70,229,0.06);color:var(--primary);font-weight:800">
+                        </div>
+                        <h2 id="articleTitle" style="margin:8px 0 6px"></h2>
+                        <div class="article-meta muted" id="articleMeta"></div>
+                    </div>
+
+                    <div class="panel-actions" aria-hidden="false">
+                        <button id="shareBtn" onclick="toggleSharePopup(event)" title="Share">Share</button>
+                        <button id="saveBtn" onclick="toggleSaveCurrent()" title="Save">Save</button>
+                        <button class="close-btn" onclick="closeArticle()" title="Close (Esc)">Close ✕</button>
+                    </div>
+
+                    <!-- share popup -->
+                    <div id="sharePopup" class="share-popup" role="menu" aria-hidden="true">
+                        <button onclick="shareWhatsApp()">Share via WhatsApp</button>
+                        <button onclick="shareTwitter()">Share on Twitter</button>
+                        <button onclick="copyLink()">Copy link</button>
+                    </div>
+                </div>
+
+                <div id="articleBody" style="margin-top:14px;color:var(--muted);line-height:1.78">
+                    <!-- article content injected here -->
+                </div>
+
+                <!-- big ad placeholder inside article (mid-content) -->
+                <div class="ad-slot" aria-hidden="true" style="margin-top:24px;">
+                    <strong>Ad Space — In-Article (Large)</strong><br>
+                    (Reserve for Google AdSense — responsive leaderboard)
+                </div>
+            </div>
+
+            <aside class="article-side" style="margin-top: 2.4em;" aria-hidden="false">
+                <div style="display:flex;align-items:center;gap:10px;justify-content:space-between">
+                    <div style="font-weight:800;color:var(--primary)">Article Tools</div>
+                    <!-- <div class="muted" style="font-size:13px">Share / Save</div> -->
+                </div>
+
+
+
+                <div style="margin-top:16px">
+                    <div style="font-weight:700;margin-bottom:8px">Related</div>
+                    <div id="relatedList" class="muted"
+                        style="font-size:14px;display:flex;flex-direction:column;gap:8px"></div>
+                </div>
+
+                <div style="margin-top:16px">
+                    <div style="font-weight:700;margin-bottom:8px">Ad Slot (side)</div>
+                    <div class="ad-slot" aria-hidden="true" style="padding:18px">
+                        <strong>Ad Space — Sidebar 300×250</strong><br>(AdSense / native)
+                    </div>
+                </div>
+
+            </aside>
+        </div>
+    </div>
+
+    <div id="full-roadmap-modal" class="roadmap-overlay">
+
+        <button class="close-roadmap-btn" onclick="closeRoadmapModal()">
+            <i class="fa-solid fa-xmark"></i> Close
+        </button>
+
+        <div class="roadmap-scroll-container" id="roadmap-scroll-area">
+            <div class="roadmap-content-wrapper">
+
+                <div class="roadmap-modal-header">
+                    <span class="badge-blue" id="roadmap-badge">Career Path</span>
+                    <h2 id="dynamic-roadmap-title">Loading...</h2>
+                    <p id="dynamic-roadmap-desc">Loading roadmap details...</p>
+                </div>
+
+                <div class="clean-timeline">
+
+                    <div class="rail-line"></div>
+
+                    <div class="progress-beam" id="modal-beam"></div>
+
+                    <div id="timeline-steps-container">
+                    </div>
+
+                    <div class="clean-step center final-step" style="position: relative;top: 6em;">
+                        <div class="success-icon">
+                            <i class="fa-solid fa-flag-checkered"></i>
+                        </div>
+                        <h3>Ready to Apply</h3>
+                        <p>You have mastered the skills. Go get hired!</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        /* =========================================
+           1. DATA: POSTS & ROADMAPS
+           ========================================= */
+
+        // --- The Blog Articles Data ---
+        const POSTS = [
+            {
+                id: 101,
+                title: "IT Jobs Guide: How to Start and Succeed",
+                category: "IT jobs",
+                // date: "2025-11-01",
+                excerpt: "Landing your first IT job requires a focused plan: fundamentals, projects, and interviews.",
+                // Regular Article -> Has Content
+                content: `<p>Landing an IT role requires clarity and consistent practice. Start with the fundamentals: <strong>data structures</strong>, basic <strong>OS</strong> understanding, and networking basics. Build small projects showcasing your skills and put them on GitHub.</p>
+            <h3>Practical steps</h3>
+            <ol><li>Learn core CS concepts</li><li>Build 2–3 projects (frontend/backend)</li><li>Practice coding interviews & system design</li><li>Apply, network, and iterate</li></ol>
+            <p>Keep notes of interview feedback and improve weak areas. Focus on quality over quantity in applications.</p>`
+            },
+            {
+                id: 102,
+                title: "Full Stack Developer Roadmap 2025",
+                category: "Roadmaps",
+                roadmapKey: "fullstack", // <--- LINK TO ROADMAP POPUP
+                // date: "2025-10-14",
+                excerpt: "A modern full-stack roadmap: front-end frameworks, backend, databases, testing and deployment.",
+                content: "" // Content unused because we show the "See Roadmap" button
+            },
+            {
+                id: 103,
+                title: "AI Engineer Roadmap (Python & LLMs)",
+                category: "Roadmaps",
+                roadmapKey: "ai", // <--- LINK TO ROADMAP POPUP
+                // date: "2025-09-05",
+                excerpt: "Paths to become an AI Engineer — Python, TensorFlow, and Large Language Models.",
+                content: ""
+            },
+            {
+                id: 104,
+                title: "Top Tech News This Week",
+                category: "Tech news",
+                // date: "2025-11-25",
+                excerpt: "Curated highlights: major product launches, funding rounds and ecosystem moves.",
+                content: `<p>This week in tech: several notable product launches, one large round in AI infra and an important open-source release. Subscribe for a weekly digest with short summaries.</p><p>Key highlights include the new version of React, updates to the Vercel platform, and major shifts in the GPU market.</p>`
+            },
+            {
+                id: 105,
+                title: "AI & ML Trends 2025 — What to Watch",
+                category: "Tech news",
+                // date: "2025-11-20",
+                excerpt: "A look at the major AI trends shaping tooling, startups, and research in 2025.",
+                content: `<p>Key trends: multimodal models, on-device inference, model efficiency, and more tooling around safe model deployment. Companies focus on cost-effective inference and fine-tuning pipelines.</p>`
+            },
+            {
+                id: 106,
+                title: "Troubleshooting Common Dev Environment Issues",
+                category: "Tech issues",
+                // date: "2025-09-30",
+                excerpt: "Fixes for port conflicts, dependency mismatches, permission errors and git merges.",
+                content: `<p>When debugging dev environments, keep a checklist. Common fixes include: kill processes on conflicting ports, clear node_modules and reinstall, use virtual envs for Python, and resolve git conflicts with careful merges.</p>`
+            },
+            {
+                id: 107,
+                title: "VS Code Not Opening — Quick Fix Guide",
+                category: "Tech issues",
+                // date: "2025-08-15",
+                excerpt: "Step-by-step fixes if your VS Code fails to start or crashes repeatedly.",
+                content: `<p>Try launching with --disable-extensions, check logs, reinstall or clear user data if necessary. Also verify GPU crash logs for Electron issues.</p>`
+            },
+            {
+                id: 108,
+                title: "DevOps Engineer Roadmap",
+                category: "Roadmaps",
+                roadmapKey: "devops", // <--- LINK TO ROADMAP POPUP
+                // date: "2025-07-10",
+                excerpt: "Master the art of deployment: Docker, Kubernetes, CI/CD and Cloud Providers.",
+                content: ""
+            },
+            {
+                id: 109,
+                title: "Docker Tips Every Dev Should Know",
+                category: "Tech issues",
+                // date: "2025-06-02",
+                excerpt: "Practical dockerfile optimizations, multi-stage builds, and debugging containers locally.",
+                content: `<p>Use slim base images, multi-stage builds to reduce size, and healthchecks for reliability. Mount volumes during dev for faster iteration.</p>`
+            },
+            {
+                id: 110,
+                title: "Technical Writer Roadmap",
+                category: "Roadmaps",
+                roadmapKey: "writer", // <--- LINK TO ROADMAP POPUP
+                // date: "2025-05-18",
+                excerpt: "Learn how to document APIs, write guides, and master Markdown.",
+                content: ""
+            }
+        ];
+
+        // --- The Roadmap Content Data ---
+        const roadmapData = {
+            'fullstack': {
+                title: "Full Stack Developer",
+                desc: "Master the MERN stack and build complete web applications.",
+                steps: [
+                    { title: "The Foundation", desc: "HTML5, CSS3, Flexbox, Grid, and Semantic markup.", tags: ["HTML", "CSS", "Git"] },
+                    { title: "JavaScript Core", desc: "ES6+, Async/Await, DOM Manipulation, and Fetch API.", tags: ["ES6", "DOM", "JSON"] },
+                    { title: "Frontend Framework", desc: "React.js, Hooks, Redux Toolkit, and Tailwind CSS.", tags: ["React", "Redux", "Vite"] },
+                    { title: "Backend Logic", desc: "Node.js runtime, Express Server, and RESTful APIs.", tags: ["Node", "Express", "JWT"] },
+                    { title: "Database & Deploy", desc: "MongoDB, Mongoose schemas, and Vercel deployment.", tags: ["MongoDB", "Cloud", "CICD"] }
+                ]
+            },
+            'ai': {
+                title: "AI Engineer",
+                desc: "From Python basics to building Large Language Models.",
+                steps: [
+                    { title: "Python Mastery", desc: "Data structures, OOP, NumPy, and Pandas.", tags: ["Python", "Pandas", "NumPy"] },
+                    { title: "Math & Stats", desc: "Linear Algebra, Calculus, and Probability theory.", tags: ["Math", "Statistics"] },
+                    { title: "Machine Learning", desc: "Scikit-Learn, Supervised vs Unsupervised learning.", tags: ["ML", "Scikit", "Algorithms"] },
+                    { title: "Deep Learning", desc: "Neural Networks, TensorFlow, and PyTorch.", tags: ["PyTorch", "TensorFlow", "NN"] },
+                    { title: "LLMs & GenAI", desc: "Transformers, HuggingFace, and RAG pipelines.", tags: ["LLM", "GPT", "LangChain"] }
+                ]
+            },
+            'writer': {
+                title: "Technical Writer",
+                desc: "Learn to document code and create world-class API references.",
+                steps: [
+                    { title: "Writing Basics", desc: "Grammar, Tone, and Simplified Technical English (STE).", tags: ["English", "Style Guide"] },
+                    { title: "Docs-as-Code", desc: "Markdown, Git, and Static Site Generators.", tags: ["Markdown", "Git", "SSG"] },
+                    { title: "API Documentation", desc: "Reading JSON, REST APIs, and Postman.", tags: ["REST", "Postman", "OpenAPI"] },
+                    { title: "Tools of Trade", desc: "Docusaurus, Swagger, and Jira.", tags: ["Docusaurus", "Swagger"] }
+                ]
+            },
+            'devops': {
+                title: "DevOps Engineer",
+                desc: "Bridge the gap between development and operations.",
+                steps: [
+                    { title: "OS & Scripting", desc: "Linux command line, Bash scripting, and SSH.", tags: ["Linux", "Bash", "Terminal"] },
+                    { title: "Containerization", desc: "Docker files, Images, Containers, and Networking.", tags: ["Docker", "Containers"] },
+                    { title: "Orchestration", desc: "Kubernetes (K8s) clusters and Pod management.", tags: ["K8s", "Helm"] },
+                    { title: "CI/CD Pipelines", desc: "GitHub Actions, Jenkins, and automated testing.", tags: ["Jenkins", "GitHub Actions"] },
+                    { title: "Cloud Providers", desc: "AWS services (EC2, S3) and Terraform (IaC).", tags: ["AWS", "Terraform"] }
+                ]
+            }
+        };
+
+        /* =========================================
+           2. APP STATE & INIT
+           ========================================= */
+        let POSTS_WORK = POSTS.slice();
+        let currentIndex = 0;
+        const categories = Array.from(new Set(POSTS_WORK.map(p => p.category)));
+        categories.unshift('All');
+
+        // DOM Elements
+        const postsList = document.getElementById('postsList');
+        const filterChips = document.getElementById('filterChips');
+        const sidebarCats = document.getElementById('sidebarCats');
+        const recentList = document.getElementById('recentList');
+        const resultsCount = document.getElementById('resultsCount');
+        const overlay = document.getElementById('overlay');
+        const sharePopup = document.getElementById('sharePopup');
+        const savedListEl = document.getElementById('savedList');
+
+        const fullRoadmapModal = document.getElementById('full-roadmap-modal');
+        const timelineContainer = document.getElementById('timeline-steps-container');
+        const scrollArea = document.getElementById('roadmap-scroll-area');
+
+        function init() {
+            renderFilterChips();
+            renderSidebarCats();
+            renderRecent();
+            renderPosts(POSTS_WORK);
+
+            // Listeners
+            document.getElementById('search').addEventListener('input', applyFilter);
+            document.addEventListener('keydown', handleKeys);
+            overlay.addEventListener('click', (e) => { if (e.target === overlay) closeArticle(); });
+            loadSaved();
+        }
+
+        /* =========================================
+           3. RENDERING LOGIC (The Fixes)
+           ========================================= */
+
+        function renderPosts(list) {
+            postsList.innerHTML = '';
+            if (!list.length) {
+                postsList.innerHTML = `<div class="card"><div class="muted">No posts found.</div></div>`;
+                resultsCount.textContent = 'Showing 0';
+                return;
+            }
+            resultsCount.textContent = `Showing ${list.length}`;
+
+            list.forEach((p) => {
+                const art = document.createElement('article');
+                art.className = 'card';
+
+                // LOGIC: Check if it is a linked Roadmap or a regular Article
+                let buttonHtml = '';
+                if (p.category === 'Roadmaps' && p.roadmapKey) {
+                    // Roadmap Button
+                    buttonHtml = `<button class="roadmap-btn" data-key="${p.roadmapKey}">See Roadmap</button>`;
+                } else {
+                    // Read More Button
+                    buttonHtml = `<button class="read-btn" data-id="${p.id}">Read More</button>`;
+                }
+
+                art.innerHTML = `
+                <div class="meta">
+                    <div class="tag">${escapeHtml(p.category)}</div>
+  
+                </div>
+                <h3>${escapeHtml(p.title)}</h3>
+                <div class="excerpt">${escapeHtml(p.excerpt)}</div>
+                <div class="card-actions">
+                    <div class="muted">Trending</div>
+                    <div>${buttonHtml}</div>
+                </div>
+            `;
+
+                // ATTACH CLICK LISTENERS
+                if (p.category === 'Roadmaps' && p.roadmapKey) {
+                    art.querySelector('.roadmap-btn').addEventListener('click', () => {
+                        showRoadmap(p.roadmapKey);
+                    });
+                } else {
+                    art.querySelector('.read-btn').addEventListener('click', () => {
+                        openArticleById(p.id);
+                    });
+                }
+
+                postsList.appendChild(art);
+            });
+        }
+
+        function renderFilterChips() {
+            filterChips.innerHTML = '';
+            categories.forEach((c, i) => {
+                const btn = document.createElement('button');
+                btn.className = 'chip' + (i === 0 ? ' active' : '');
+                btn.textContent = c;
+                btn.setAttribute('data-cat', c);
+                btn.onclick = () => {
+                    document.querySelectorAll('.chip').forEach(x => x.classList.remove('active'));
+                    btn.classList.add('active');
+                    applyFilter();
+                };
+                filterChips.appendChild(btn);
+            });
+        }
+
+        function renderSidebarCats() {
+            sidebarCats.innerHTML = '';
+            categories.slice(1).forEach(c => {
+                const b = document.createElement('button'); b.className = 'chip'; b.innerText = c;
+                b.onclick = () => { selectCategory(c); };
+                sidebarCats.appendChild(b);
+            });
+        }
+
+        function renderRecent() {
+            recentList.innerHTML = '';
+            const recent = POSTS_WORK.slice().sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 5);
+            recent.forEach(r => {
+                const div = document.createElement('div'); div.className = 'recent-item';
+                div.innerHTML = `<div class="thumb">${escapeHtml(r.title.charAt(0))}</div>
+                             <div style="flex:1">
+                               <div style="font-weight:700;font-size:14px">${escapeHtml(r.title)}</div>
+                               <div class="muted" style="font-size:13px">${escapeHtml(r.category)} · ${escapeHtml(r.date)}</div>
+                             </div>`;
+
+                // Check if recent item is roadmap or article
+                if (r.roadmapKey) {
+                    div.onclick = () => showRoadmap(r.roadmapKey);
+                } else {
+                    div.onclick = () => openArticleById(r.id);
+                }
+
+                recentList.appendChild(div);
+            });
+        }
+
+        /* =========================================
+           4. FILTERING & SEARCH
+           ========================================= */
+        function applyFilter() {
+            const q = document.getElementById('search').value.trim().toLowerCase();
+            const active = document.querySelector('.chip.active')?.getAttribute('data-cat') || 'All';
+            const filtered = POSTS_WORK.filter(p => {
+                const inCat = active === 'All' ? true : p.category === active;
+                // Safe check content string
+                const safeContent = p.content ? stripHtml(p.content) : "";
+                const text = (p.title + ' ' + p.category + ' ' + p.excerpt + ' ' + safeContent).toLowerCase();
+                const match = !q || text.includes(q);
+                return inCat && match;
+            });
+            renderPosts(filtered);
+        }
+
+        function selectCategory(cat) {
+            document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.chip').forEach(c => { if (c.getAttribute('data-cat') === cat) c.classList.add('active') });
+            applyFilter();
+            window.scrollTo({ top: document.getElementById('blogs').offsetTop - 80, behavior: 'smooth' });
+        }
+
+        /* =========================================
+           5. ARTICLE READER LOGIC
+           ========================================= */
+        function openArticleById(id) {
+            const idx = POSTS_WORK.findIndex(p => p.id === id);
+            if (idx === -1) return;
+            currentIndex = idx;
+            openArticle(idx);
+        }
+
+        function openArticle(idx) {
+            const p = POSTS_WORK[idx];
+            if (!p) return;
+
+            document.getElementById('articleTitle').textContent = p.title;
+            document.getElementById('articleTag').textContent = p.category;
+            document.getElementById('articleMeta').textContent = `Published · ${p.date}`;
+            // Load the HTML Content
+            document.getElementById('articleBody').innerHTML = p.content;
+
+            renderRelated(p);
+            overlay.classList.add('open'); overlay.setAttribute('aria-hidden', 'false');
+            document.getElementById('articleMain').focus();
+            document.documentElement.style.overflow = 'hidden';
+            hideSharePopup();
+            updateSaveButtonState();
+        }
+
+        function closeArticle() {
+            overlay.classList.remove('open'); overlay.setAttribute('aria-hidden', 'true');
+            document.documentElement.style.overflow = '';
+            hideSharePopup();
+        }
+
+        function prevArticle() {
+            // Simple cycler (skipping roadmaps would be advanced, just cycle all for now)
+            currentIndex = (currentIndex - 1 + POSTS_WORK.length) % POSTS_WORK.length;
+            if (POSTS_WORK[currentIndex].roadmapKey) {
+                showRoadmap(POSTS_WORK[currentIndex].roadmapKey);
+                closeArticle(); // Close reader if it switches to roadmap
+            } else {
+                openArticle(currentIndex);
+            }
+        }
+
+        function nextArticle() {
+            currentIndex = (currentIndex + 1) % POSTS_WORK.length;
+            if (POSTS_WORK[currentIndex].roadmapKey) {
+                showRoadmap(POSTS_WORK[currentIndex].roadmapKey);
+                closeArticle();
+            } else {
+                openArticle(currentIndex);
+            }
+        }
+
+        function renderRelated(post) {
+            const list = document.getElementById('relatedList');
+            list.innerHTML = '';
+            const same = POSTS_WORK.filter(p => p.category === post.category && p.id !== post.id && !p.roadmapKey).slice(0, 4);
+            same.forEach(s => {
+                const a = document.createElement('a'); a.href = '#'; a.style.cursor = 'pointer'; a.onclick = (e) => { e.preventDefault(); openArticleById(s.id); };
+                a.innerHTML = `<div style="padding:8px;border-radius:8px;background:transparent">${escapeHtml(s.title)}</div>`;
+                list.appendChild(a);
+            });
+            if (!same.length) list.innerHTML = '<div class="muted">No related articles.</div>';
+        }
+
+        /* =========================================
+           6. ROADMAP POPUP LOGIC
+           ========================================= */
+        function showRoadmap(key) {
+            const data = roadmapData[key];
+            if (!data) return;
+
+            // Set Header
+            document.getElementById('dynamic-roadmap-title').innerText = data.title;
+            document.getElementById('dynamic-roadmap-desc').innerText = data.desc;
+
+            // Clear previous steps
+            timelineContainer.innerHTML = '';
+
+            // Generate Steps dynamically
+            data.steps.forEach((step, index) => {
+                const i = index + 1;
+                const side = i % 2 === 0 ? 'right' : 'left';
+                const tagsHtml = step.tags.map(tag => `<span>${tag}</span>`).join('');
+
+                const html = `
+                <div class="clean-step ${side}">
+                    <div class="step-dot"></div>
+                    <div class="step-card">
+                        <div class="step-number">0${i}</div>
+                        <h3>${step.title}</h3>
+                        <p>${step.desc}</p>
+                        <div class="step-tags">${tagsHtml}</div>
+                    </div>
+                </div>
+            `;
+                timelineContainer.insertAdjacentHTML('beforeend', html);
+            });
+
+            // Close small selection modal if it was open
+            const smallModal = document.getElementById('roadmap-modal');
+            if (smallModal) smallModal.classList.remove('active');
+
+            // Open full modal
+            fullRoadmapModal.classList.add('active');
+
+            // Reset Scroll & Beam
+            scrollArea.scrollTop = 0;
+            updateBeam();
+        }
+
+        function closeRoadmapModal() {
+            fullRoadmapModal.classList.remove('active');
+        }
+
+        // Scroll Animation (Beam)
+        scrollArea.addEventListener('scroll', updateBeam);
+
+        function updateBeam() {
+            const beam = document.getElementById('modal-beam');
+            const steps = document.querySelectorAll('.clean-step');
+
+            const scrollTop = scrollArea.scrollTop;
+            const docHeight = scrollArea.scrollHeight - scrollArea.clientHeight;
+            let percent = (scrollTop / docHeight) * 100;
+
+            percent = Math.min(95, Math.max(0, percent));
+            beam.style.height = `${percent}%`;
+
+            steps.forEach(step => {
+                const top = step.getBoundingClientRect().top;
+                if (top < window.innerHeight * 0.8) {
+                    step.classList.add('revealed');
+                }
+            });
+        }
+
+        // Small Modal (Selection) Controls
+        const openBtn = document.getElementById('open-roadmap-btn');
+        const modalSelection = document.getElementById('roadmap-modal');
+
+        if (openBtn && modalSelection) {
+            openBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                modalSelection.classList.add('active');
+            });
+
+            // Close buttons for small modal
+            const closeSmall = document.getElementById('close-modal-btn');
+            if (closeSmall) closeSmall.addEventListener('click', () => modalSelection.classList.remove('active'));
+
+            modalSelection.addEventListener('click', (e) => {
+                if (e.target === modalSelection) modalSelection.classList.remove('active');
+            });
+        }
+
+        /* =========================================
+           7. UTILS & EXTRAS
+           ========================================= */
+
+        // Toggle Share Popup
+        function toggleSharePopup(ev) {
+            ev.stopPropagation();
+            const p = sharePopup;
+            if (p.style.display === 'block') { p.style.display = 'none'; p.setAttribute('aria-hidden', 'true'); }
+            else { p.style.display = 'block'; p.setAttribute('aria-hidden', 'false'); }
+        }
+        function hideSharePopup() { sharePopup.style.display = 'none'; sharePopup.setAttribute('aria-hidden', 'true'); }
+
+        function getCurrentArticleUrl() {
+            const p = POSTS_WORK[currentIndex];
+            return `${location.origin}${location.pathname}#article-${p.id}`;
+        }
+
+        // Copy/Share Functions
+        function shareWhatsApp() { window.open(`https://wa.me/?text=${encodeURIComponent(getCurrentArticleUrl())}`, '_blank'); }
+        function shareTwitter() {
+            const text = encodeURIComponent(POSTS_WORK[currentIndex].title);
+            window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(getCurrentArticleUrl())}&text=${text}`, '_blank');
+        }
+        function copyLink() {
+            const url = getCurrentArticleUrl();
+            navigator.clipboard.writeText(url).then(() => {
+                alert('Link copied!');
+            });
+            hideSharePopup();
+        }
+
+        // Saved/LocalStorage
+        function loadSaved() {
+            const saved = JSON.parse(localStorage.getItem('nicehe_saved') || '[]');
+            renderSavedList(saved);
+        }
+        function toggleSaveCurrent() {
+            const saved = JSON.parse(localStorage.getItem('nicehe_saved') || '[]');
+            const p = POSTS_WORK[currentIndex];
+            const exists = saved.find(s => s.id === p.id);
+            if (exists) {
+                const updated = saved.filter(s => s.id !== p.id);
+                localStorage.setItem('nicehe_saved', JSON.stringify(updated));
+                renderSavedList(updated);
+            } else {
+                saved.unshift({ id: p.id, title: p.title, date: p.date });
+                localStorage.setItem('nicehe_saved', JSON.stringify(saved));
+                renderSavedList(saved);
+            }
+            updateSaveButtonState();
+        }
+        function renderSavedList(list) {
+            if (!list || !list.length) { savedListEl.innerHTML = 'No saved articles yet.'; return; }
+            savedListEl.innerHTML = '';
+            list.forEach(item => {
+                const el = document.createElement('div'); el.style.display = 'flex'; el.style.justifyContent = 'space-between'; el.style.alignItems = 'center';
+                el.innerHTML = `<div style="font-weight:700">${escapeHtml(item.title)}</div><div><button class="small-btn" onclick='openArticleById(${item.id})'>Open</button></div>`;
+                savedListEl.appendChild(el);
+            });
+        }
+        function updateSaveButtonState() {
+            const saved = JSON.parse(localStorage.getItem('nicehe_saved') || '[]');
+            const p = POSTS_WORK[currentIndex];
+            const exists = saved.find(s => s.id === p.id);
+            document.getElementById('saveBtn').textContent = exists ? 'Saved' : 'Save';
+        }
+
+        // Helper Utils
+        function stripHtml(html) { return html.replace(/<\/?[^>]+(>|$)/g, ""); }
+        function escapeHtml(text) { return (text + '').replace(/[&<>"'`=\/]/g, function (s) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;', '/': '&#x2F;', '=': '&#x3D;', '`': '&#x60' }[s]) }); }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const m = document.getElementById('mobileMenu');
+            m.style.display = (m.style.display === 'block' ? 'none' : 'block');
+        }
+
+        // Header Mobile Toggle (Duplicate logic in case user used top header)
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.querySelector('.nav-menu');
+        if (mobileBtn && navMenu) {
+            mobileBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                const icon = mobileBtn.querySelector('i');
+                if (navMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars'); icon.classList.add('fa-xmark');
+                } else {
+                    icon.classList.remove('fa-xmark'); icon.classList.add('fa-bars');
+                }
+            });
+        }
+
+        // Close share popup when clicking outside
+        document.addEventListener('click', (ev) => {
+            const p = sharePopup;
+            const btn = document.getElementById('shareBtn');
+            if (!p) return;
+            if (ev.target === btn) return;
+            if (!p.contains(ev.target)) hideSharePopup();
+        });
+
+        // Run Init
+        init();
+
+    </script>
+
+
+    <script>
+        /* =========================================
+   8. SPA NAVIGATION LOGIC
+   ========================================= */
+
+        // Map pages to their DOM IDs
+        const PAGES = {
+            'home': ['home', 'blogs'], // Home shows hero + blogs
+            'jobs': ['jobs-page'],
+            'bugs': ['bugs-page'],
+            'guides': ['guides-page'],
+            'about': ['about-page']
+        };
+
+        function navigateTo(pageKey) {
+            // 1. Hide all sections
+            document.querySelectorAll('section').forEach(sec => {
+                // Keep the overlay modals hidden, don't touch them
+                if (!sec.classList.contains('roadmap-overlay') && !sec.classList.contains('modal-overlay')) {
+                    sec.style.display = 'none';
+                }
+            });
+
+            // 2. Hide Hero specifically if not home
+            const hero = document.querySelector('.hero-section');
+            if (pageKey === 'home') {
+                hero.style.display = 'block';
+            } else {
+                hero.style.display = 'none';
+            }
+
+            // 3. Show specific page sections
+            if (PAGES[pageKey]) {
+                PAGES[pageKey].forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) {
+                        el.style.display = 'block';
+                        el.classList.add('active'); // Triggers animation
+                    }
+                });
+            }
+
+            // 4. Update Nav Active State
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            // Simple logic to highlight based on text content (you might want to add IDs to nav links)
+            const links = document.querySelectorAll('.nav-link');
+            if (pageKey === 'home') links[0].classList.add('active');
+            if (pageKey === 'jobs') links[2].classList.add('active'); // Assuming Job Guides is 3rd
+            if (pageKey === 'bugs') links[3].classList.add('active');
+            if (pageKey === 'about') links[4].classList.add('active');
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Bind Navigation Links (You need to update your HTML Nav links to trigger these)
+        // Example: <a href="#" onclick="navigateTo('jobs')">Job Guides</a>
+
+        /* =========================================
+           9. GUIDE CONTENT SWITCHER
+           ========================================= */
+        const GUIDE_CONTENT = {
+            'resume': `<h1>The ATS-Proof Resume Guide</h1><p>Your resume is not read by humans first...</p><h2>The STAR Method</h2><p>Situation, Task, Action, Result.</p>`,
+            'interview': `<h1>Interview Preparation</h1><p>Technical interviews consist of two parts: Algorithmic (LeetCode) and System Design.</p><h3>Behavioral</h3><p>Prepare stories for "Tell me about a time you failed."</p>`,
+            'salary': `<h1>Salary Negotiation Masterclass</h1><p>Never give the first number. Always ask for the budget range for the position first.</p><h3>Counter Offers</h3><p>If you have leverage, use it politely but firmly.</p>`,
+            'tutorials': `<h1>Tutorials Library</h1><p>Browse our collection of deep-dive coding tutorials.</p><ul><li><a href="#">Building a React To-Do App</a></li><li><a href="#">Python for Data Science 101</a></li></ul>`,
+            'docs': `<h1>Documentation</h1><p>Official TechGuide API references and style guides.</p>`
+        };
+
+        function switchGuide(key) {
+            const content = GUIDE_CONTENT[key];
+            const area = document.getElementById('guide-content-area');
+            if (content && area) {
+                area.innerHTML = content;
+
+                // Update sidebar active state
+                document.querySelectorAll('.doc-link').forEach(l => l.classList.remove('active'));
+                // (In a real app, you'd target the specific clicked link element here)
+            }
+        }
+
+        // Initialize Navigation Listeners on Load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Attach click events to your existing Nav Bar links based on their text
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const text = link.innerText.toLowerCase();
+
+                    if (text.includes('home')) navigateTo('home');
+                    else if (text.includes('job')) navigateTo('jobs');
+                    else if (text.includes('bug')) navigateTo('bugs');
+                    else if (text.includes('about')) navigateTo('about');
+                    else if (text.includes('roadmap')) {
+                        // Keep roadmaps as the popup modal or scroll to section
+                        document.getElementById('open-roadmap-btn').click();
+                    }
+                });
+            });
+
+            // Also bind footer links similarly if needed
+        });
+
+        /* =========================================
+   10. EXTENDED PAGE NAVIGATION & TABS
+   ========================================= */
+
+        // Update PAGES mapping with new sections
+        Object.assign(PAGES, {
+            'career': ['career-page'],
+            'learn': ['learn-page'],
+            'support': ['support-page'],
+            'privacy': ['privacy-page']
+        });
+
+        // Logic for Career Hub Sidebar Tabs
+        function openHubTab(tabName, btnElement) {
+            // 1. Remove active class from all buttons
+            document.querySelectorAll('.hub-nav-btn').forEach(b => b.classList.remove('active'));
+            // 2. Add active class to clicked button
+            btnElement.classList.add('active');
+
+            // 3. Hide all content panels
+            document.querySelectorAll('.content-panel').forEach(p => p.classList.remove('active'));
+            // 4. Show the selected panel
+            document.getElementById(`tab-${tabName}`).classList.add('active');
+        }
+
+        // Logic for FAQ Accordion
+        function toggleFaq(element) {
+            // Optional: Close others when opening one
+            // document.querySelectorAll('.faq-item').forEach(item => {
+            //     if(item !== element) item.classList.remove('active');
+            // });
+            element.classList.toggle('active');
+        }
+
+        // Logic for Learning Hub Filter
+        function filterLearn(type) {
+            const cards = document.querySelectorAll('.tutorial-card');
+            const chips = document.querySelectorAll('#learn-page .chip');
+
+            // Update chip visuals
+            chips.forEach(c => c.classList.remove('active'));
+            // (In a real scenario, pass 'this' to toggle visual active state)
+
+            cards.forEach(card => {
+                if (type === 'all') {
+                    card.style.display = 'block';
+                } else {
+                    if (card.classList.contains(`type-${type}`)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }
+            });
+        }
+
+        // Update the Main Navigation Listener in DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // ATTACH CLICK HANDLERS TO FOOTER LINKS
+            // We need to find links based on text content
+            const allLinks = document.querySelectorAll('a');
+
+            allLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const text = link.innerText.trim().toLowerCase();
+
+                    // Check for matches
+                    if (text === 'resume guide' || text === 'interview prep' || text === 'salary negotiation') {
+                        e.preventDefault();
+                        navigateTo('career');
+                        // Optional: Auto-switch tab based on link text
+                        if (text.includes('resume')) openHubTab('resume', document.querySelectorAll('.hub-nav-btn')[0]);
+                        if (text.includes('interview')) openHubTab('interview', document.querySelectorAll('.hub-nav-btn')[1]);
+                        if (text.includes('salary')) openHubTab('salary', document.querySelectorAll('.hub-nav-btn')[2]);
+                    }
+                    else if (text === 'tutorials' || text === 'documentation') {
+                        e.preventDefault();
+                        navigateTo('learn');
+                    }
+                    else if (text === 'contact support') {
+                        e.preventDefault();
+                        navigateTo('support');
+                    }
+                    else if (text === 'privacy policy') {
+                        e.preventDefault();
+                        navigateTo('privacy');
+                    }
+                    else if (text === 'job board') {
+                        e.preventDefault();
+                        navigateTo('jobs');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
