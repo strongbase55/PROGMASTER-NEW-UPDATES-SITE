@@ -1,0 +1,74 @@
+body {
+    background-color: aqua;
+  
+}
+
+.idcard {
+    min-height: 250px;
+    max-width: 250px;
+    background-color: white;
+    border: 5px solid purple;
+
+}
+
+.company-logo img {
+    height: 50px;
+    width: 50px;
+    position: relative;
+    top: 20px;
+}
+
+.company-name {
+    text-align: center;
+    font-size: 20px;
+    color: purple;
+    text-transform: uppercase;
+
+}
+
+.caption {
+    text-align: center;
+    color: gray;
+    position: relative;
+    bottom: 20px;
+    right: 3px;
+}
+
+.profile img {
+    height: 100px;
+    width: 100px;
+    border: 5px solid orange;
+    border-radius: 10%;
+
+}
+
+.emp-name {
+    text-align: center;
+    color: purple;
+    font-size: 20px;
+}
+
+.designation {
+    text-align: center;
+    color: gray;
+    position: relative;
+    bottom: 20px;
+}
+
+.emp-id {
+    text-align: center;
+    color: rgb(214, 92, 92);
+    position: relative;
+    bottom: 13px;
+}
+
+.barcode {
+    position: relative;
+    bottom: 10px;
+}
+
+.barcode p {
+    position: relative;
+    bottom: 20px;
+    font-size: 13px;
+}
