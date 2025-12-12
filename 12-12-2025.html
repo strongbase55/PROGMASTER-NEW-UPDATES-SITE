@@ -109,6 +109,31 @@
                 margin-top: 8em;
             }
         }
+
+
+        /* for scorll aniamtions */
+        /* Custom Scrollbar for Dashboard Lists */
+        /* Vertical Scrollbar Styling */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            /* Width for vertical scrollbar */
+            height: 6px;
+            /* Height for horizontal (if any) */
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 4px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
     </style>
 </head>
 
@@ -1075,12 +1100,15 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
                         <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center space-x-2">
                             <i class="fa-solid fa-trophy text-yellow-600"></i>
                             <span>Top Achievers</span>
                         </h3>
-                        <div id="leaderboard-list" class="space-y-3">
+
+                        <div id="leaderboard-list"
+                            class="flex flex-col space-y-3 max-h-[600px] overflow-y-auto overflow-x-hidden custom-scrollbar pr-2">
                             <p class="text-sm text-gray-500">Loading leaderboard...</p>
                         </div>
                     </div>
@@ -1164,10 +1192,10 @@
 
                     <div class="bg-white rounded-2xl shadow-xl p-6">
                         <h3 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-3">Continue Learning</h3>
-                        <div id="continue-learning" class="space-y-4">
+                        <div id="continue-learning"
+                            class="space-y-4 max-h-[240px] overflow-y-auto custom-scrollbar pr-2">
                         </div>
                     </div>
-
                     <div class="bg-white rounded-2xl shadow-xl p-6 mt-8">
                         <h3 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-3">My Learning Metrics</h3>
 
@@ -1218,7 +1246,7 @@
                     </button>
                     <button onclick="downloadOfferLetter()"
                         class="bg-indigo-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-indigo-700 shadow-md flex items-center">
-                        <i class="fa-solid fa-download mr-2"></i> Download PDF
+                        <i class="fa-solid fa-download mr-2"></i> Download Offer Letter
                     </button>
                 </div>
 
@@ -2656,7 +2684,16 @@
         // Application State
         let currentCourse = null;
         let currentUser = null;
-        const PAYMENT_LINK = 'https://rzp.io/rzp/MdrDDje';
+        // const PAYMENT_LINK = 'https://rzp.io/rzp/MdrDDje';
+        // ==========================================
+        // 💰 DYNAMIC PAYMENT LINKS
+        // ==========================================
+        const INTERNSHIP_PAYMENT_LINKS = {
+            '1': 'https://rzp.io/rzp/MdrDDje',
+            '2': 'https://rzp.io/rzp/YOUR_2_MONTH_LINK_HERE',
+            '3': 'https://rzp.io/rzp/YOUR_3_MONTH_LINK_HERE',
+            '6': 'https://rzp.io/rzp/YOUR_6_MONTH_LINK_HERE'
+        };
         const SUBSCRIPTION_PAYMENT_LINK = 'https://rzp.io/rzp/MdrDDje';
         let isAdminLoggedIn = false;
         const ADMIN_EMAIL = 'admin@edupro.com'; const ADMIN_PASSWORD = 'admin123';
@@ -4216,11 +4253,52 @@
         // ==========================================
         // 5. INITIALIZE
         // ==========================================
+        // ==========================================
+        // 2. AUTH & INIT (FIXED: RE-RENDER ON LOGOUT)
+        // ==========================================
         document.addEventListener('DOMContentLoaded', () => {
-            // IMPORTANT: Fetch courses with TRUE to trigger the merge
-            fetchUserData(true);
-        });
+            auth.onAuthStateChanged((user) => {
+                if (user) {
+                    // --- USER LOGGED IN ---
+                    currentUserId = user.uid;
+                    startSessionTimer();
+                    fetchUserData(true).then(() => {
+                        updateNav(true, false);
+                        if (['welcome-screen', 'login-form', 'register-form'].includes(getCurrentScreenId())) {
+                            showDashboard();
+                        }
+                        hideLoader();
+                    });
+                } else {
+                    // --- USER LOGGED OUT ---
+                    currentUserId = null;
+                    currentUser = null;
+                    updateNav(false, isAdminLoggedIn);
 
+                    // ⬇️ CRITICAL FIX: Re-render cards to remove "View Certificate" buttons
+                    // This resets the UI to "Guest Mode" immediately
+                    renderCourseList(courses);
+                    loadPopularCourses();
+
+                    hideLoader();
+                }
+            });
+
+            // Initial Fetch
+            fetchUserData(true);
+            window.addEventListener('beforeunload', logSessionDuration);
+
+            // Dark Mode
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                document.body.style.backgroundColor = '#111827';
+                updateThemeIcon(true);
+            }
+
+            // Check for URL Verification
+            checkUrlVerification();
+        });
         // ==========================================
         // 🚀 REDESIGNED COURSE DETAIL PAGE
         // ==========================================
@@ -5662,7 +5740,6 @@
         }
 
         function getLeaderboardData() {
-            // Map all users to their certificate count and filter out users with 0 certs
             const leaderboard = users
                 .map(user => ({
                     uid: user.uid,
@@ -5671,11 +5748,15 @@
                 }))
                 .filter(user => user.certCount > 0);
 
-            // Sort by certificate count (descending)
             leaderboard.sort((a, b) => b.certCount - a.certCount);
 
-            return leaderboard.slice(0, 5); // Return Top 5
+            // Return TOP 50 so scrolling is possible
+            return leaderboard.slice(0, 50);
         }
+
+        // ==========================================
+        // 🏆 RENDER LEADERBOARD (FIXED LAYOUT & SCROLL)
+        // ==========================================
         function renderLeaderboard() {
             const container = document.getElementById('leaderboard-list');
             const topAchievers = getLeaderboardData();
@@ -5705,22 +5786,31 @@
                 }
 
                 return `
-                    <div class="flex items-center justify-between p-3 rounded-xl ${rankClass}">
-                        <div class="flex items-center space-x-3">
-                            <div class="w-10 h-10 flex items-center justify-center text-xl font-extrabold" style="width:30px;text-align:center;">
-                                ${badgeHTML}
-                            </div>
-                            <div class="w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center text-white text-sm font-semibold flex-shrink-0">
-                                ${initials}
-                            </div>
-                            <span class="text-sm font-medium text-gray-800 truncate">${user.name}</span>
-                        </div>
-                        <div class="flex items-center space-x-1 text-red-500 font-bold flex-shrink-0">
-                            <i class="fa-solid fa-certificate"></i>
-                            <span>${user.certCount}</span>
+            <div class="flex items-center justify-between p-3 rounded-xl ${rankClass} h-[70px]">
+                
+                <div class="flex items-center space-x-3 flex-1 min-w-0 mr-2">
+                    
+                    <div class="w-8 flex-shrink-0 text-center flex items-center justify-center">
+                        ${badgeHTML}
+                    </div>
+                    
+                    <div class="w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center text-white text-sm font-semibold flex-shrink-0">
+                        ${initials}
+                    </div>
+                    
+                    <div class="flex-1 min-w-0">
+                        <div class="text-sm font-medium text-gray-800 break-words whitespace-normal max-h-[2.8rem] overflow-y-auto custom-scrollbar leading-tight pr-1">
+                            ${user.name}
                         </div>
                     </div>
-                `;
+                </div>
+
+                <div class="flex items-center space-x-1 text-red-500 font-bold flex-shrink-0">
+                    <i class="fa-solid fa-certificate"></i>
+                    <span>${user.certCount}</span>
+                </div>
+            </div>
+        `;
             }).join('');
         }
     </script>
@@ -7941,6 +8031,8 @@
             if (!data) return;
 
             document.getElementById('internship-selection-modal').classList.add('hidden');
+            document.getElementById('offer-letters-screen').style.display = 'none';
+
             hideAllScreens();
             document.getElementById('internship-detail-screen').style.display = 'block';
             window.scrollTo(0, 0);
@@ -7966,40 +8058,101 @@
         // ==========================================
         let pendingDomainKey = null; // Store key temporarily
 
+        // ==========================================
+        // 💼 OPEN MODAL & RESTRICT DATES
+        // ==========================================
+        // ==========================================
+        // 💼 OPEN MODAL (CURRENT YEAR RESTRICTION)
+        // ==========================================
         function registerForInternship(domainKey) {
             pendingDomainKey = domainKey;
-            document.getElementById('internship-apply-modal').classList.remove('hidden');
-        }
 
+            const modal = document.getElementById('internship-apply-modal');
+            const dateInput = document.getElementById('int-start-date');
+
+            // --- DATE LOGIC ---
+            const today = new Date();
+            const currentYear = today.getFullYear();
+
+            // 1. Set MIN Date to JAN 1st of CURRENT YEAR 
+            // (Allows selecting past dates within this year)
+            const minDate = `${currentYear}-01-01`;
+
+            // 2. Set MAX Date to DEC 31 of CURRENT YEAR 
+            // (Prevents selecting future years like 2026)
+            const maxDate = `${currentYear}-12-31`;
+
+            dateInput.min = minDate;
+            dateInput.max = maxDate;
+
+            // Default value set to today for convenience
+            dateInput.value = today.toISOString().split('T')[0];
+
+            modal.classList.remove('hidden');
+        }
+        // ==========================================
+        // 💼 CONFIRM & PAY (DYNAMIC PRICING)
+        // ==========================================
+        // ==========================================
+        // 💰 CONFIRM & PAY (WITH DATE VALIDATION)
+        // ==========================================
+        // ==========================================
+        // 💰 CONFIRM & PAY (YEAR VALIDATION ONLY)
+        // ==========================================
         async function confirmInternshipAndPay() {
             const startDateVal = document.getElementById('int-start-date').value;
-            const durationVal = parseInt(document.getElementById('int-duration').value);
+            const durationVal = document.getElementById('int-duration').value;
 
             if (!startDateVal) return alert("Please select a start date.");
 
+            // --- VALIDATION CHECK ---
+            const selectedDate = new Date(startDateVal);
+            const today = new Date();
+            const currentYear = today.getFullYear();
+
+            // 1. Strict Year Check
+            // Start date MUST be in the current year (e.g., 2025)
+            if (selectedDate.getFullYear() !== currentYear) {
+                alert(`Start date must be within the current year (${currentYear}).`);
+                return;
+            }
+
+            // --- PROCEED IF VALID ---
+            const specificPaymentLink = INTERNSHIP_PAYMENT_LINKS[durationVal];
+
+            if (!specificPaymentLink) {
+                alert("Error: Payment link not found.");
+                return;
+            }
+
             // Calculate End Date
-            const startDate = new Date(startDateVal);
-            const endDate = new Date(startDate);
-            endDate.setMonth(endDate.getMonth() + durationVal);
+            const durationInt = parseInt(durationVal);
+            const endDate = new Date(selectedDate);
+            endDate.setMonth(endDate.getMonth() + durationInt);
 
-            const dateString = `${startDate.toISOString().split('T')[0]} to ${endDate.toISOString().split('T')[0]}`;
+            const dateString = `${selectedDate.toISOString().split('T')[0]} to ${endDate.toISOString().split('T')[0]}`;
 
-            if (!confirm("Proceed to payment gateway?")) return;
+            if (!confirm(`Proceed to payment for ${durationVal} Month(s)?\nStart: ${startDateVal}`)) return;
 
-            // Save to Firebase (Status: False, Dates: Captured)
-            await database.ref(`edupro_users/${currentUserId}/internships/${pendingDomainKey}`).set({
-                status: false,
-                appliedDate: new Date().toISOString(),
-                domainTitle: internshipDomains[pendingDomainKey].title,
-                duration: `${durationVal} Months`,
-                dateRange: dateString // Saved for Offer Letter & Certificate
-            });
+            try {
+                await database.ref(`edupro_users/${currentUserId}/internships/${pendingDomainKey}`).set({
+                    status: false,
+                    appliedDate: new Date().toISOString(),
+                    domainTitle: internshipDomains[pendingDomainKey].title,
+                    duration: `${durationVal} Month${durationInt > 1 ? 's' : ''}`,
+                    dateRange: dateString
+                });
 
-            document.getElementById('internship-apply-modal').classList.add('hidden');
-            window.open(PAYMENT_LINK, '_blank');
+                document.getElementById('internship-apply-modal').classList.add('hidden');
+                window.open(specificPaymentLink, '_blank');
 
-            alert("Application Submitted! Your Offer Letter will be generated upon Admin Approval.");
-            showInternships();
+                alert("Application Submitted! Your Offer Letter will be generated upon Admin Approval.");
+                showInternships();
+
+            } catch (error) {
+                console.error(error);
+                alert("Database Error: " + error.message);
+            }
         }
 
         // 5. TASK SCREEN LOGIC (With Content)
@@ -8477,6 +8630,27 @@
             }
         }
 
+    </script>
+
+
+    <script>
+        // ==========================================
+        // 📞 SHOW CONTACT SECTION
+        // ==========================================
+        function showContact() {
+            // 1. Reset views to ensure the Home/Welcome screen is visible
+            hideAllScreens();
+            document.getElementById('welcome-screen').style.display = 'block';
+
+            // 2. Scroll smoothly to the Contact Section
+            // We use a small timeout to ensure the display change renders first
+            setTimeout(() => {
+                const contactSection = document.getElementById('contact-section');
+                if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 100);
+        }
     </script>
 </body>
 
